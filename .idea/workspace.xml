@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="e94aae23-d2b3-4ef4-a1b0-935ace432a4d" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/pytesmo" />
+  </component>
+  <component name="ProjectId" id="1YO3zlKtWXeRtfg9zAhrqpnJhwW" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/scripts" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.smapvex handhelds">
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <module name="SM_devel" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="airpals" type="PythonConfigurationType" factoryName="Python">
+      <module name="SM_devel" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$USER_HOME$/anaconda3/envs/SM_devel/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/scripts" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/scripts/airpals_vs_s1.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="s1smc_exec" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="SM_devel" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$USER_HOME$/anaconda3/envs/SM_devel/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/sgrt_devels" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/sgrt_devels/s1smc_exec.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="smapvex handhelds" type="PythonConfigurationType" factoryName="Python">
+      <module name="SM_devel" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$USER_HOME$/anaconda3/envs/SM_devel/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/scripts" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/scripts/smapvex_hh_vs_s1.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="smapvex_val" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="SM_devel" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$USER_HOME$/anaconda3/envs/SM_devel/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/scripts" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/scripts/smapvex_val.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.s1smc_exec" />
+      <item itemvalue="Python.smapvex_val" />
+      <item itemvalue="Python.airpals" />
+      <item itemvalue="Python.smapvex handhelds" />
+    </list>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e94aae23-d2b3-4ef4-a1b0-935ace432a4d" name="Default Changelist" comment="" />
+      <created>1582800077737</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1582800077737</updated>
+      <workItem from="1582800083824" duration="44000" />
+      <workItem from="1582800144772" duration="55962000" />
+      <workItem from="1583400605338" duration="30713000" />
+      <workItem from="1583934071600" duration="31513000" />
+      <workItem from="1584443380322" duration="895000" />
+      <workItem from="1584444290423" duration="440000" />
+      <workItem from="1584444743287" duration="2763000" />
+      <workItem from="1584462210609" duration="65026000" />
+      <workItem from="1585768050609" duration="14769000" />
+      <workItem from="1592231344617" duration="1734000" />
+      <workItem from="1592472844996" duration="39064000" />
+      <workItem from="1594824707370" duration="12421000" />
+      <workItem from="1594986613648" duration="650000" />
+      <workItem from="1595689494725" duration="5162000" />
+      <workItem from="1595761731486" duration="1215000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/pytesmo/pytesmo" />
+      <path value="$PROJECT_DIR$/pytesmo/pytesmo/tests/test-data" />
+    </ignored-roots>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="418" y="219" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1594635691210">
+      <screen x="0" y="31" width="1920" height="1057" />
+    </state>
+    <state x="418" y="219" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.31.1920.1057@0.31.1920.1057" timestamp="1594635691210" />
+    <state x="446" y="222" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.31.2048.1072@0.31.2048.1072" timestamp="1594112849891" />
+    <state x="504" y="207" width="306" height="291" key="FileChooserDialogImpl" timestamp="1595757043222">
+      <screen x="0" y="31" width="1280" height="640" />
+    </state>
+    <state x="504" y="207" width="306" height="291" key="FileChooserDialogImpl/0.31.1280.640@0.31.1280.640" timestamp="1595757043222" />
+    <state x="757" y="322" width="430" height="486" key="FileChooserDialogImpl/0.31.1920.1057@0.31.1920.1057" timestamp="1594635684314" />
+    <state x="807" y="326" width="430" height="486" key="FileChooserDialogImpl/0.31.2048.1072@0.31.2048.1072" timestamp="1594986661502" />
+    <state width="1238" height="177" key="GridCell.Tab.0.bottom" timestamp="1595762945972">
+      <screen x="0" y="31" width="1280" height="640" />
+    </state>
+    <state width="1238" height="177" key="GridCell.Tab.0.bottom/0.31.1280.640@0.31.1280.640" timestamp="1595762945972" />
+    <state width="1878" height="349" key="GridCell.Tab.0.bottom/0.31.1920.1057@0.31.1920.1057" timestamp="1594636554055" />
+    <state width="2006" height="349" key="GridCell.Tab.0.bottom/0.31.2048.1072@0.31.2048.1072" timestamp="1594824691536" />
+    <state width="1238" height="177" key="GridCell.Tab.0.center" timestamp="1595762945972">
+      <screen x="0" y="31" width="1280" height="640" />
+    </state>
+    <state width="1238" height="177" key="GridCell.Tab.0.center/0.31.1280.640@0.31.1280.640" timestamp="1595762945972" />
+    <state width="1878" height="349" key="GridCell.Tab.0.center/0.31.1920.1057@0.31.1920.1057" timestamp="1594636554054" />
+    <state width="2006" height="349" key="GridCell.Tab.0.center/0.31.2048.1072@0.31.2048.1072" timestamp="1594824691534" />
+    <state width="1238" height="177" key="GridCell.Tab.0.left" timestamp="1595762945971">
+      <screen x="0" y="31" width="1280" height="640" />
+    </state>
+    <state width="1238" height="177" key="GridCell.Tab.0.left/0.31.1280.640@0.31.1280.640" timestamp="1595762945971" />
+    <state width="1878" height="349" key="GridCell.Tab.0.left/0.31.1920.1057@0.31.1920.1057" timestamp="1594636554054" />
+    <state width="2006" height="349" key="GridCell.Tab.0.left/0.31.2048.1072@0.31.2048.1072" timestamp="1594824691533" />
+    <state width="1238" height="177" key="GridCell.Tab.0.right" timestamp="1595762945972">
+      <screen x="0" y="31" width="1280" height="640" />
+    </state>
+    <state width="1238" height="177" key="GridCell.Tab.0.right/0.31.1280.640@0.31.1280.640" timestamp="1595762945972" />
+    <state width="1878" height="349" key="GridCell.Tab.0.right/0.31.1920.1057@0.31.1920.1057" timestamp="1594636554055" />
+    <state width="2006" height="349" key="GridCell.Tab.0.right/0.31.2048.1072@0.31.2048.1072" timestamp="1594824691535" />
+    <state width="1238" height="177" key="GridCell.Tab.1.bottom" timestamp="1595762945974">
+      <screen x="0" y="31" width="1280" height="640" />
+    </state>
+    <state width="1238" height="177" key="GridCell.Tab.1.bottom/0.31.1280.640@0.31.1280.640" timestamp="1595762945974" />
+    <state width="1878" height="349" key="GridCell.Tab.1.bottom/0.31.1920.1057@0.31.1920.1057" timestamp="1594636551668" />
+    <state width="2006" height="349" key="GridCell.Tab.1.bottom/0.31.2048.1072@0.31.2048.1072" timestamp="1594824691555" />
+    <state width="1238" height="177" key="GridCell.Tab.1.center" timestamp="1595762945973">
+      <screen x="0" y="31" width="1280" height="640" />
+    </state>
+    <state width="1238" height="177" key="GridCell.Tab.1.center/0.31.1280.640@0.31.1280.640" timestamp="1595762945973" />
+    <state width="1878" height="349" key="GridCell.Tab.1.center/0.31.1920.1057@0.31.1920.1057" timestamp="1594636551667" />
+    <state width="2006" height="349" key="GridCell.Tab.1.center/0.31.2048.1072@0.31.2048.1072" timestamp="1594824691542" />
+    <state width="1238" height="177" key="GridCell.Tab.1.left" timestamp="1595762945973">
+      <screen x="0" y="31" width="1280" height="640" />
+    </state>
+    <state width="1238" height="177" key="GridCell.Tab.1.left/0.31.1280.640@0.31.1280.640" timestamp="1595762945973" />
+    <state width="1878" height="349" key="GridCell.Tab.1.left/0.31.1920.1057@0.31.1920.1057" timestamp="1594636551667" />
+    <state width="2006" height="349" key="GridCell.Tab.1.left/0.31.2048.1072@0.31.2048.1072" timestamp="1594824691537" />
+    <state width="1238" height="177" key="GridCell.Tab.1.right" timestamp="1595762945974">
+      <screen x="0" y="31" width="1280" height="640" />
+    </state>
+    <state width="1238" height="177" key="GridCell.Tab.1.right/0.31.1280.640@0.31.1280.640" timestamp="1595762945974" />
+    <state width="1878" height="349" key="GridCell.Tab.1.right/0.31.1920.1057@0.31.1920.1057" timestamp="1594636551668" />
+    <state width="2006" height="349" key="GridCell.Tab.1.right/0.31.2048.1072@0.31.2048.1072" timestamp="1594824691554" />
+    <state x="559" y="380" key="com.intellij.ide.util.TipDialog" timestamp="1594986613925">
+      <screen x="0" y="31" width="2048" height="1072" />
+    </state>
+    <state x="559" y="380" key="com.intellij.ide.util.TipDialog/0.31.2048.1072@0.31.2048.1072" timestamp="1594986613925" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/sgrt_devels/compile_tset.py</url>
+          <line>1941</line>
+          <option name="timeStamp" value="54" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/sgrt_devels/compile_tset.py</url>
+          <line>1988</line>
+          <option name="timeStamp" value="56" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/sgrt_devels/s1smc_exec.py</url>
+          <line>74</line>
+          <option name="timeStamp" value="65" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/sgrt_devels/compile_tset.py</url>
+          <line>3068</line>
+          <option name="timeStamp" value="67" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/sgrt_devels/compile_tset.py</url>
+          <line>3070</line>
+          <option name="timeStamp" value="68" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/sgrt_devels/compile_tset.py</url>
+          <line>5177</line>
+          <option name="timeStamp" value="83" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/sgrt_devels/compile_tset.py</url>
+          <line>3242</line>
+          <option name="timeStamp" value="91" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/sgrt_devels/compile_tset.py</url>
+          <line>2727</line>
+          <option name="timeStamp" value="92" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/sgrt_devels/compile_tset.py</url>
+          <line>4746</line>
+          <option name="timeStamp" value="93" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/scripts/smapvex_val.py</url>
+          <line>37</line>
+          <option name="timeStamp" value="106" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/scripts/airpals_vs_s1.py</url>
+          <line>22</line>
+          <option name="timeStamp" value="109" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/scripts/smapvex_hh_vs_s1.py</url>
+          <line>32</line>
+          <option name="timeStamp" value="112" />
+        </line-breakpoint>
+      </breakpoints>
+      <default-breakpoints>
+        <breakpoint type="python-exception">
+          <properties notifyOnTerminate="true" exception="BaseException">
+            <option name="notifyOnTerminate" value="true" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/SM_devel$s1smc_exec.coverage" NAME="s1smc_exec Coverage Results" MODIFIED="1594889334333" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/sgrt_devels" />
+    <SUITE FILE_PATH="coverage/SM_devel$smapvex_val.coverage" NAME="smapvex_val Coverage Results" MODIFIED="1594109345984" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
+    <SUITE FILE_PATH="coverage/SM_devel$smapvex_handhelds.coverage" NAME="smapvex handhelds Coverage Results" MODIFIED="1595762411377" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
+    <SUITE FILE_PATH="coverage/SM_devel$airpals.coverage" NAME="airpals Coverage Results" MODIFIED="1595761323296" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
+  </component>
+</project>
