@@ -27,14 +27,25 @@ for ismpath in filelist:
 
     # extract sm values from raster
     smlist = list()
+    insitulist = list()
     for irow in range(sv16sm_subset.shape[0]):
         if np.isfinite(sv16sm_subset['x'].iloc[irow]):
             smlist.append(s1img.interp(x=sv16sm_subset['x'].iloc[irow], y=sv16sm_subset['y'].iloc[irow],
                                        method='linear').values[0])
+            insitulist.append(sv16sm_subset['VOL_SOIL_M'].iloc[irow])
         else:
             smlist.append(0.0)
+            insitulist.append(0.0)
 
     sv16sm.loc[sv16sm['DATE'] == idate.strftime('%Y-%m-%d'), 's1sm'] = smlist
+
+df = pd.DataFrame({'Estimated': smlist, 'In-situ': insitulist})
+df = df.where(df['In-situ'] < 1).dropna()
+df = df.where(df['In-situ'] > 0).dropna()
+smplot = df.plot.scatter('In-situ', 'Estimated')
+smplot.set_xlim(0, 0.5)
+smplot.set_ylim(0, 0.5)
+plt.show()
 print('something')
 
 

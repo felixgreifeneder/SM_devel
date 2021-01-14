@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/SM_devel.iml" filepath="$PROJECT_DIR$/.idea/SM_devel.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../pytesmo/.idea/pytesmo.iml" filepath="$PROJECT_DIR$/../pytesmo/.idea/pytesmo.iml" />
     </modules>
   </component>
 </project>

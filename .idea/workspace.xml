@@ -1,7 +1,123 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e94aae23-d2b3-4ef4-a1b0-935ace432a4d" name="Default Changelist" comment="" />
+    <list default="true" id="e94aae23-d2b3-4ef4-a1b0-935ace432a4d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/scripts/smapvex_airpals.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sgrt_devels/utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/SM_devel.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/SM_devel.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/plots_for_pub3.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/plots_for_pub3.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/smapvex_hh_vs_s1.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/smapvex_hh_vs_s1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/smapvex_val.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/smapvex_val.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sgrt_devels/compile_tset.py" beforeDir="false" afterPath="$PROJECT_DIR$/sgrt_devels/compile_tset.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sgrt_devels/extr_TS.py" beforeDir="false" afterPath="$PROJECT_DIR$/sgrt_devels/extr_TS.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sgrt_devels/s1smc_exec.py" beforeDir="false" afterPath="$PROJECT_DIR$/sgrt_devels/s1smc_exec.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/.gitmodules" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/.gitmodules" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/.travis.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/.travis.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/AUTHORS.rst" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/AUTHORS.rst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/CHANGES.md" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/CHANGES.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/LICENSE.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/LICENSE.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/MANIFEST.in" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/MANIFEST.in" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/README.rst" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/README.rst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/appveyor.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/appveyor.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/appveyor/install.ps1" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/appveyor/install.ps1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/appveyor/run_with_compiler.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/appveyor/run_with_compiler.cmd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/dev_requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/dev_requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/docs/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/docs/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/docs/Triple collocation.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/docs/Triple collocation.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/docs/Triple collocation.rst" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/docs/Triple collocation.rst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/docs/anomalies.rst" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/docs/anomalies.rst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/docs/compare_ASCAT_ISMN.rst" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/docs/compare_ASCAT_ISMN.rst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/docs/compare_ASCAT_ISMN_files/Thumbs.db" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/docs/compare_ASCAT_ISMN_files/compare_ASCAT_ISMN_5_3.text" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/docs/compare_ASCAT_ISMN_files/compare_ASCAT_ISMN_5_3.text" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/docs/compare_ASCAT_ISMN_files/compare_ASCAT_ISMN_5_7.text" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/docs/compare_ASCAT_ISMN_files/compare_ASCAT_ISMN_5_7.text" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/docs/conf.py" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/docs/conf.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/docs/data_preparation_ASCAT_ISMN.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/docs/data_preparation_ASCAT_ISMN.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/docs/data_preparation_ASCAT_ISMN.rst" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/docs/data_preparation_ASCAT_ISMN.rst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/docs/developers_guide.rst" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/docs/developers_guide.rst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/docs/environment.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/docs/environment.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/docs/examples.rst" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/docs/examples.rst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/docs/index.rst" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/docs/index.rst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/docs/license.rst" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/docs/license.rst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/docs/moduleindex.rst" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/docs/moduleindex.rst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/docs/plot_ISMN.rst" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/docs/plot_ISMN.rst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/docs/plot_ISMN_files/Thumbs.db" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/docs/swi_calculation/swi_calc.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/docs/swi_calculation/swi_calc.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/docs/swi_calculation/swi_calc.rst" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/docs/swi_calculation/swi_calc.rst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/docs/validation_framework.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/docs/validation_framework.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/docs/validation_framework.rst" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/docs/validation_framework.rst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/examples/Read_H_SAF_images.py" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/examples/Read_H_SAF_images.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/examples/anomalies.py" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/examples/anomalies.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/examples/compare_ISMN_ASCAT.py" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/examples/compare_ISMN_ASCAT.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/examples/plot_ASCAT_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/examples/plot_ASCAT_data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/examples/plot_ISMN_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/examples/plot_ISMN_data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/examples/read_ASCAT_H25.py" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/examples/read_ASCAT_H25.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/examples/validation_framework.py" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/examples/validation_framework.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/optional_requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/optional_requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/pytesmo/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/pytesmo/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/pytesmo/colormaps/load_cmap.py" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/pytesmo/colormaps/load_cmap.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/pytesmo/df_metrics.py" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/pytesmo/df_metrics.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/pytesmo/grid/grids.py" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/pytesmo/grid/grids.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/pytesmo/grid/netcdf.py" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/pytesmo/grid/netcdf.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/pytesmo/grid/resample.py" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/pytesmo/grid/resample.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/pytesmo/io/bufr/bufr.py" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/pytesmo/io/bufr/bufr.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/pytesmo/io/dataset_base.py" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/pytesmo/io/dataset_base.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/pytesmo/io/ismn/interface.py" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/pytesmo/io/ismn/interface.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/pytesmo/io/ismn/metadata_collector.py" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/pytesmo/io/ismn/metadata_collector.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/pytesmo/io/ismn/readers.py" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/pytesmo/io/ismn/readers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/pytesmo/io/sat/ers.py" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/pytesmo/io/sat/ers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/pytesmo/metrics.py" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/pytesmo/metrics.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/pytesmo/scaling.py" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/pytesmo/scaling.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/pytesmo/time_series/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/pytesmo/time_series/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/pytesmo/time_series/anomaly.py" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/pytesmo/time_series/anomaly.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/pytesmo/time_series/filtering.py" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/pytesmo/time_series/filtering.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/pytesmo/time_series/filters.c" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/pytesmo/time_series/filters.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/pytesmo/time_series/filters.pyx" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/pytesmo/time_series/filters.pyx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/pytesmo/time_series/grouping.py" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/pytesmo/time_series/grouping.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/pytesmo/time_series/plotting.py" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/pytesmo/time_series/plotting.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/pytesmo/timedate/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/pytesmo/timedate/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/pytesmo/timedate/dekad.py" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/pytesmo/timedate/dekad.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/pytesmo/timedate/julian.py" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/pytesmo/timedate/julian.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/pytesmo/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/pytesmo/utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/pytesmo/validation_framework/adapters.py" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/pytesmo/validation_framework/adapters.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/pytesmo/validation_framework/data_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/pytesmo/validation_framework/data_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/pytesmo/validation_framework/metric_calculators.py" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/pytesmo/validation_framework/metric_calculators.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/pytesmo/validation_framework/results_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/pytesmo/validation_framework/results_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/pytesmo/validation_framework/start_validation.py" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/pytesmo/validation_framework/start_validation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/pytesmo/validation_framework/temporal_matchers.py" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/pytesmo/validation_framework/temporal_matchers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/pytesmo/validation_framework/validation.py" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/pytesmo/validation_framework/validation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/readthedocs.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/readthedocs.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/setup.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/setup.cfg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/setup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/tests/test-data" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/tests/test-data" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/tests/test_dataset_base.py" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/tests/test_dataset_base.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/tests/test_grid/test_resample.py" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/tests/test_grid/test_resample.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/tests/test_ismn/test_interface.py" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/tests/test_ismn/test_interface.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/tests/test_ismn/test_readers.py" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/tests/test_ismn/test_readers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/tests/test_metrics.py" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/tests/test_metrics.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/tests/test_result_managers.py" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/tests/test_result_managers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/tests/test_sat/test_ers.py" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/tests/test_sat/test_ers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/tests/test_scaling.py" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/tests/test_scaling.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/tests/test_temporal_matching.py" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/tests/test_temporal_matching.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/tests/test_time_series/test_anomaly.py" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/tests/test_time_series/test_anomaly.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/tests/test_time_series/test_filtering.py" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/tests/test_time_series/test_filtering.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/tests/test_time_series/test_filters.py" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/tests/test_time_series/test_filters.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/tests/test_time_series/test_grouping.py" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/tests/test_time_series/test_grouping.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/tests/test_time_series/test_plotting.py" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/tests/test_time_series/test_plotting.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/tests/test_timedate/test_dekad.py" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/tests/test_timedate/test_dekad.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/tests/test_timedate/test_julian.py" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/tests/test_timedate/test_julian.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/tests/test_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/tests/test_utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/tests/test_validation_framwork/test_adapters.py" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/tests/test_validation_framwork/test_adapters.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/tests/test_validation_framwork/test_data_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/tests/test_validation_framwork/test_data_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/tests/test_validation_framwork/test_datasets.py" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/tests/test_validation_framwork/test_datasets.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/tests/test_validation_framwork/test_temporal_matchers.py" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/tests/test_validation_framwork/test_temporal_matchers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pytesmo/tests/test_validation_framwork/test_validation.py" beforeDir="false" afterPath="$PROJECT_DIR$/../pytesmo/tests/test_validation_framwork/test_validation.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -29,8 +145,10 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/pytesmo" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
   </component>
+  <component name="JupyterTrust" id="09d61194-1865-474b-9500-b85c9f1c3ddf" />
   <component name="ProjectId" id="1YO3zlKtWXeRtfg9zAhrqpnJhwW" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -42,14 +160,22 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="PyConsoleOptionsProvider">
+    <option name="myPythonConsoleState">
+      <console-settings module-name="SM_devel" is-module-sdk="true">
+        <option name="myUseModuleSdk" value="true" />
+        <option name="myModuleName" value="SM_devel" />
+      </console-settings>
+    </option>
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/scripts" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.smapvex handhelds">
+  <component name="RunManager" selected="Python.s1smc_exec">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <module name="SM_devel" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -94,6 +220,28 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="nsidc-download_SV16I_PLTBSM.001_2020-12-18" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="SM_devel" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/scripts" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/scripts/nsidc-download_SV16I_PLTBSM.001_2020-12-18.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="s1smc_exec" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="SM_devel" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -123,13 +271,35 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/scripts" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/scripts/smapvex_hh_vs_s1.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="smapvex_airpals" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="SM_devel" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="$USER_HOME$/anaconda3/envs/SM_devel/bin/python" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/scripts" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/scripts/smapvex_hh_vs_s1.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/scripts/smapvex_airpals.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -165,7 +335,14 @@
       <item itemvalue="Python.smapvex_val" />
       <item itemvalue="Python.airpals" />
       <item itemvalue="Python.smapvex handhelds" />
+      <item itemvalue="Python.smapvex_airpals" />
+      <item itemvalue="Python.nsidc-download_SV16I_PLTBSM.001_2020-12-18" />
     </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.nsidc-download_SV16I_PLTBSM.001_2020-12-18" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -192,6 +369,21 @@
       <workItem from="1594986613648" duration="650000" />
       <workItem from="1595689494725" duration="5162000" />
       <workItem from="1595761731486" duration="1215000" />
+      <workItem from="1598430517741" duration="115000" />
+      <workItem from="1598430648078" duration="90658000" />
+      <workItem from="1601972625953" duration="30035000" />
+      <workItem from="1602847683997" duration="5000" />
+      <workItem from="1603783044081" duration="41791000" />
+      <workItem from="1605709489738" duration="1237000" />
+      <workItem from="1605824681143" duration="2527000" />
+      <workItem from="1606136694300" duration="4320000" />
+      <workItem from="1606308060013" duration="4352000" />
+      <workItem from="1606314516672" duration="1132000" />
+      <workItem from="1606315698426" duration="360000" />
+      <workItem from="1606316089327" duration="27529000" />
+      <workItem from="1606731642982" duration="8117000" />
+      <workItem from="1606744948599" duration="64572000" />
+      <workItem from="1610095253304" duration="12705000" />
     </task>
     <servers />
   </component>
@@ -205,121 +397,86 @@
     </ignored-roots>
   </component>
   <component name="WindowStateProjectService">
-    <state x="418" y="219" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1594635691210">
-      <screen x="0" y="31" width="1920" height="1057" />
-    </state>
-    <state x="418" y="219" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.31.1920.1057@0.31.1920.1057" timestamp="1594635691210" />
-    <state x="446" y="222" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.31.2048.1072@0.31.2048.1072" timestamp="1594112849891" />
-    <state x="504" y="207" width="306" height="291" key="FileChooserDialogImpl" timestamp="1595757043222">
-      <screen x="0" y="31" width="1280" height="640" />
-    </state>
-    <state x="504" y="207" width="306" height="291" key="FileChooserDialogImpl/0.31.1280.640@0.31.1280.640" timestamp="1595757043222" />
-    <state x="757" y="322" width="430" height="486" key="FileChooserDialogImpl/0.31.1920.1057@0.31.1920.1057" timestamp="1594635684314" />
-    <state x="807" y="326" width="430" height="486" key="FileChooserDialogImpl/0.31.2048.1072@0.31.2048.1072" timestamp="1594986661502" />
-    <state width="1238" height="177" key="GridCell.Tab.0.bottom" timestamp="1595762945972">
-      <screen x="0" y="31" width="1280" height="640" />
-    </state>
-    <state width="1238" height="177" key="GridCell.Tab.0.bottom/0.31.1280.640@0.31.1280.640" timestamp="1595762945972" />
-    <state width="1878" height="349" key="GridCell.Tab.0.bottom/0.31.1920.1057@0.31.1920.1057" timestamp="1594636554055" />
-    <state width="2006" height="349" key="GridCell.Tab.0.bottom/0.31.2048.1072@0.31.2048.1072" timestamp="1594824691536" />
-    <state width="1238" height="177" key="GridCell.Tab.0.center" timestamp="1595762945972">
-      <screen x="0" y="31" width="1280" height="640" />
-    </state>
-    <state width="1238" height="177" key="GridCell.Tab.0.center/0.31.1280.640@0.31.1280.640" timestamp="1595762945972" />
-    <state width="1878" height="349" key="GridCell.Tab.0.center/0.31.1920.1057@0.31.1920.1057" timestamp="1594636554054" />
-    <state width="2006" height="349" key="GridCell.Tab.0.center/0.31.2048.1072@0.31.2048.1072" timestamp="1594824691534" />
-    <state width="1238" height="177" key="GridCell.Tab.0.left" timestamp="1595762945971">
-      <screen x="0" y="31" width="1280" height="640" />
-    </state>
-    <state width="1238" height="177" key="GridCell.Tab.0.left/0.31.1280.640@0.31.1280.640" timestamp="1595762945971" />
-    <state width="1878" height="349" key="GridCell.Tab.0.left/0.31.1920.1057@0.31.1920.1057" timestamp="1594636554054" />
-    <state width="2006" height="349" key="GridCell.Tab.0.left/0.31.2048.1072@0.31.2048.1072" timestamp="1594824691533" />
-    <state width="1238" height="177" key="GridCell.Tab.0.right" timestamp="1595762945972">
-      <screen x="0" y="31" width="1280" height="640" />
-    </state>
-    <state width="1238" height="177" key="GridCell.Tab.0.right/0.31.1280.640@0.31.1280.640" timestamp="1595762945972" />
-    <state width="1878" height="349" key="GridCell.Tab.0.right/0.31.1920.1057@0.31.1920.1057" timestamp="1594636554055" />
-    <state width="2006" height="349" key="GridCell.Tab.0.right/0.31.2048.1072@0.31.2048.1072" timestamp="1594824691535" />
-    <state width="1238" height="177" key="GridCell.Tab.1.bottom" timestamp="1595762945974">
-      <screen x="0" y="31" width="1280" height="640" />
-    </state>
-    <state width="1238" height="177" key="GridCell.Tab.1.bottom/0.31.1280.640@0.31.1280.640" timestamp="1595762945974" />
-    <state width="1878" height="349" key="GridCell.Tab.1.bottom/0.31.1920.1057@0.31.1920.1057" timestamp="1594636551668" />
-    <state width="2006" height="349" key="GridCell.Tab.1.bottom/0.31.2048.1072@0.31.2048.1072" timestamp="1594824691555" />
-    <state width="1238" height="177" key="GridCell.Tab.1.center" timestamp="1595762945973">
-      <screen x="0" y="31" width="1280" height="640" />
-    </state>
-    <state width="1238" height="177" key="GridCell.Tab.1.center/0.31.1280.640@0.31.1280.640" timestamp="1595762945973" />
-    <state width="1878" height="349" key="GridCell.Tab.1.center/0.31.1920.1057@0.31.1920.1057" timestamp="1594636551667" />
-    <state width="2006" height="349" key="GridCell.Tab.1.center/0.31.2048.1072@0.31.2048.1072" timestamp="1594824691542" />
-    <state width="1238" height="177" key="GridCell.Tab.1.left" timestamp="1595762945973">
-      <screen x="0" y="31" width="1280" height="640" />
-    </state>
-    <state width="1238" height="177" key="GridCell.Tab.1.left/0.31.1280.640@0.31.1280.640" timestamp="1595762945973" />
-    <state width="1878" height="349" key="GridCell.Tab.1.left/0.31.1920.1057@0.31.1920.1057" timestamp="1594636551667" />
-    <state width="2006" height="349" key="GridCell.Tab.1.left/0.31.2048.1072@0.31.2048.1072" timestamp="1594824691537" />
-    <state width="1238" height="177" key="GridCell.Tab.1.right" timestamp="1595762945974">
-      <screen x="0" y="31" width="1280" height="640" />
-    </state>
-    <state width="1238" height="177" key="GridCell.Tab.1.right/0.31.1280.640@0.31.1280.640" timestamp="1595762945974" />
-    <state width="1878" height="349" key="GridCell.Tab.1.right/0.31.1920.1057@0.31.1920.1057" timestamp="1594636551668" />
-    <state width="2006" height="349" key="GridCell.Tab.1.right/0.31.2048.1072@0.31.2048.1072" timestamp="1594824691554" />
-    <state x="559" y="380" key="com.intellij.ide.util.TipDialog" timestamp="1594986613925">
+    <state x="482" y="226" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1610097885796">
       <screen x="0" y="31" width="2048" height="1072" />
     </state>
-    <state x="559" y="380" key="com.intellij.ide.util.TipDialog/0.31.2048.1072@0.31.2048.1072" timestamp="1594986613925" />
+    <state x="482" y="226" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.31.2048.1072@0.31.2048.1072" timestamp="1610097885796" />
+    <state x="782" y="264" key="#xdebugger.evaluate" timestamp="1610102825093">
+      <screen x="0" y="31" width="2048" height="1072" />
+    </state>
+    <state x="782" y="264" key="#xdebugger.evaluate/0.31.2048.1072@0.31.2048.1072" timestamp="1610102825093" />
+    <state x="595" y="156" width="853" height="827" key="CommitChangelistDialog2" timestamp="1610640258858">
+      <screen x="0" y="31" width="2048" height="1072" />
+    </state>
+    <state x="595" y="156" width="853" height="827" key="CommitChangelistDialog2/0.31.2048.1072@0.31.2048.1072" timestamp="1610640258858" />
+    <state width="2046" height="460" key="DebuggerActiveHint" timestamp="1608306644029">
+      <screen x="0" y="31" width="2048" height="1072" />
+    </state>
+    <state width="2046" height="460" key="DebuggerActiveHint/0.31.2048.1072@0.31.2048.1072" timestamp="1608306644029" />
+    <state x="807" y="326" width="306" height="291" key="FileChooserDialogImpl" timestamp="1610571826527">
+      <screen x="0" y="31" width="2048" height="1072" />
+    </state>
+    <state x="757" y="322" width="430" height="486" key="FileChooserDialogImpl/0.31.1920.1057@0.31.1920.1057" timestamp="1606730614393" />
+    <state x="807" y="326" width="430" height="486" key="FileChooserDialogImpl/0.31.2048.1072@0.31.2048.1072" timestamp="1610571826527" />
+    <state width="2006" height="374" key="GridCell.Tab.0.bottom" timestamp="1610639991423">
+      <screen x="0" y="31" width="2048" height="1072" />
+    </state>
+    <state width="1878" height="374" key="GridCell.Tab.0.bottom/0.31.1920.1057@0.31.1920.1057" timestamp="1606734764494" />
+    <state width="2006" height="374" key="GridCell.Tab.0.bottom/0.31.2048.1072@0.31.2048.1072" timestamp="1610639991423" />
+    <state width="2006" height="374" key="GridCell.Tab.0.center" timestamp="1610639991423">
+      <screen x="0" y="31" width="2048" height="1072" />
+    </state>
+    <state width="1878" height="374" key="GridCell.Tab.0.center/0.31.1920.1057@0.31.1920.1057" timestamp="1606734764493" />
+    <state width="2006" height="374" key="GridCell.Tab.0.center/0.31.2048.1072@0.31.2048.1072" timestamp="1610639991423" />
+    <state width="2006" height="374" key="GridCell.Tab.0.left" timestamp="1610639991422">
+      <screen x="0" y="31" width="2048" height="1072" />
+    </state>
+    <state width="1878" height="374" key="GridCell.Tab.0.left/0.31.1920.1057@0.31.1920.1057" timestamp="1606734764492" />
+    <state width="2006" height="374" key="GridCell.Tab.0.left/0.31.2048.1072@0.31.2048.1072" timestamp="1610639991422" />
+    <state width="2006" height="374" key="GridCell.Tab.0.right" timestamp="1610639991423">
+      <screen x="0" y="31" width="2048" height="1072" />
+    </state>
+    <state width="1878" height="374" key="GridCell.Tab.0.right/0.31.1920.1057@0.31.1920.1057" timestamp="1606734764493" />
+    <state width="2006" height="374" key="GridCell.Tab.0.right/0.31.2048.1072@0.31.2048.1072" timestamp="1610639991423" />
+    <state width="2006" height="374" key="GridCell.Tab.1.bottom" timestamp="1610639991425">
+      <screen x="0" y="31" width="2048" height="1072" />
+    </state>
+    <state width="1878" height="374" key="GridCell.Tab.1.bottom/0.31.1920.1057@0.31.1920.1057" timestamp="1606734723782" />
+    <state width="2006" height="374" key="GridCell.Tab.1.bottom/0.31.2048.1072@0.31.2048.1072" timestamp="1610639991425" />
+    <state width="2006" height="374" key="GridCell.Tab.1.center" timestamp="1610639991424">
+      <screen x="0" y="31" width="2048" height="1072" />
+    </state>
+    <state width="1878" height="374" key="GridCell.Tab.1.center/0.31.1920.1057@0.31.1920.1057" timestamp="1606734723781" />
+    <state width="2006" height="374" key="GridCell.Tab.1.center/0.31.2048.1072@0.31.2048.1072" timestamp="1610639991424" />
+    <state width="2006" height="374" key="GridCell.Tab.1.left" timestamp="1610639991424">
+      <screen x="0" y="31" width="2048" height="1072" />
+    </state>
+    <state width="1878" height="374" key="GridCell.Tab.1.left/0.31.1920.1057@0.31.1920.1057" timestamp="1606734723781" />
+    <state width="2006" height="374" key="GridCell.Tab.1.left/0.31.2048.1072@0.31.2048.1072" timestamp="1610639991424" />
+    <state width="2006" height="374" key="GridCell.Tab.1.right" timestamp="1610639991424">
+      <screen x="0" y="31" width="2048" height="1072" />
+    </state>
+    <state width="1878" height="374" key="GridCell.Tab.1.right/0.31.1920.1057@0.31.1920.1057" timestamp="1606734723782" />
+    <state width="2006" height="374" key="GridCell.Tab.1.right/0.31.2048.1072@0.31.2048.1072" timestamp="1610639991424" />
+    <state x="513" y="203" width="1022" height="732" key="SettingsEditor" timestamp="1606316138449">
+      <screen x="0" y="31" width="2048" height="1072" />
+    </state>
+    <state x="513" y="203" width="1022" height="732" key="SettingsEditor/0.31.2048.1072@0.31.2048.1072" timestamp="1606316138449" />
+    <state x="547" y="276" width="1352" height="686" key="com.intellij.execution.console.ConsoleHistoryController$MyBrowseAction$1" timestamp="1610108338303">
+      <screen x="0" y="31" width="2048" height="1072" />
+    </state>
+    <state x="547" y="276" width="1352" height="686" key="com.intellij.execution.console.ConsoleHistoryController$MyBrowseAction$1/0.31.2048.1072@0.31.2048.1072" timestamp="1610108338303" />
+    <state x="349" y="239" key="com.intellij.ide.util.TipDialog" timestamp="1606136711934">
+      <screen x="0" y="31" width="2048" height="1072" />
+    </state>
+    <state x="349" y="239" key="com.intellij.ide.util.TipDialog/0.31.2048.1072@0.31.2048.1072" timestamp="1606136711934" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/sgrt_devels/compile_tset.py</url>
-          <line>1941</line>
-          <option name="timeStamp" value="54" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/sgrt_devels/compile_tset.py</url>
-          <line>1988</line>
-          <option name="timeStamp" value="56" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/sgrt_devels/s1smc_exec.py</url>
-          <line>74</line>
-          <option name="timeStamp" value="65" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/sgrt_devels/compile_tset.py</url>
-          <line>3068</line>
-          <option name="timeStamp" value="67" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/sgrt_devels/compile_tset.py</url>
-          <line>3070</line>
-          <option name="timeStamp" value="68" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/sgrt_devels/compile_tset.py</url>
-          <line>5177</line>
-          <option name="timeStamp" value="83" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/sgrt_devels/compile_tset.py</url>
-          <line>3242</line>
-          <option name="timeStamp" value="91" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/sgrt_devels/compile_tset.py</url>
-          <line>2727</line>
-          <option name="timeStamp" value="92" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/sgrt_devels/compile_tset.py</url>
-          <line>4746</line>
-          <option name="timeStamp" value="93" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/scripts/smapvex_val.py</url>
-          <line>37</line>
+          <line>48</line>
           <option name="timeStamp" value="106" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -329,8 +486,53 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/scripts/smapvex_hh_vs_s1.py</url>
-          <line>32</line>
+          <line>35</line>
           <option name="timeStamp" value="112" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/sgrt_devels/compile_tset.py</url>
+          <line>1186</line>
+          <option name="timeStamp" value="156" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/sgrt_devels/compile_tset.py</url>
+          <line>48</line>
+          <option name="timeStamp" value="159" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/sgrt_devels/compile_tset.py</url>
+          <line>1262</line>
+          <option name="timeStamp" value="168" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/sgrt_devels/compile_tset.py</url>
+          <line>1315</line>
+          <option name="timeStamp" value="171" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/sgrt_devels/compile_tset.py</url>
+          <line>1414</line>
+          <option name="timeStamp" value="175" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/sgrt_devels/s1smc_exec.py</url>
+          <line>25</line>
+          <option name="timeStamp" value="177" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/sgrt_devels/compile_tset.py</url>
+          <line>537</line>
+          <option name="timeStamp" value="190" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/scripts/smapvex_airpals.py</url>
+          <line>37</line>
+          <option name="timeStamp" value="192" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/sgrt_devels/compile_tset.py</url>
+          <line>775</line>
+          <option name="timeStamp" value="193" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -343,9 +545,13 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/SM_devel$s1smc_exec.coverage" NAME="s1smc_exec Coverage Results" MODIFIED="1594889334333" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/sgrt_devels" />
+    <SUITE FILE_PATH="coverage/build_training$smapvex_airpals.coverage" NAME="smapvex_airpals Coverage Results" MODIFIED="1608639018973" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
+    <SUITE FILE_PATH="coverage/build_training$s1smc_exec.coverage" NAME="s1smc_exec Coverage Results" MODIFIED="1610095983775" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/sgrt_devels" />
+    <SUITE FILE_PATH="coverage/SM_devel$s1smc_exec.coverage" NAME="s1smc_exec Coverage Results" MODIFIED="1600260616386" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/sgrt_devels" />
     <SUITE FILE_PATH="coverage/SM_devel$smapvex_val.coverage" NAME="smapvex_val Coverage Results" MODIFIED="1594109345984" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
     <SUITE FILE_PATH="coverage/SM_devel$smapvex_handhelds.coverage" NAME="smapvex handhelds Coverage Results" MODIFIED="1595762411377" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
+    <SUITE FILE_PATH="coverage/build_training$smapvex_val.coverage" NAME="smapvex_val Coverage Results" MODIFIED="1608235155975" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
     <SUITE FILE_PATH="coverage/SM_devel$airpals.coverage" NAME="airpals Coverage Results" MODIFIED="1595761323296" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
+    <SUITE FILE_PATH="coverage/build_training$smapvex_handhelds.coverage" NAME="smapvex handhelds Coverage Results" MODIFIED="1608308037496" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
   </component>
 </project>
