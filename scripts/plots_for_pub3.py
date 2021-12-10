@@ -353,6 +353,8 @@ def plot_ismn_map():
                'c','b','k','g','m','c','y','k','b','r','g',
                'g','b','r','k','y','c','m','g','k','b','c']
 
+    outtext = open('/home/fgreifeneder@eurac.edu/Documents/sm_paper/sub3mdpi/ismn_locations.txt', 'w+')
+
     # create a networklist
     allntwks = list()
     for i_ntwk, _ in stations:
@@ -364,7 +366,9 @@ def plot_ismn_map():
         lat = ismn.get_station(i_sttn, i_ntwk).latitude
         x, y = m(lon, lat)
         m.plot(x, y, marker='.', color='C' + str(style_ind), linestyle='', markersize=1.5, label=str(i_ntwk))
+        outtext.write(i_ntwk + ', ' + i_sttn + ', ' + str(lon) + ', ' + str(lat) + '\n')
 
+    outtext.close()
     m.drawmeridians([-180, -90, 0, 90, 180], labels=[1,1,0,1], fontsize="x-small")
     m.drawparallels([-60, 0, 60],labels=[1,1,0,1], fontsize="x-small")
 

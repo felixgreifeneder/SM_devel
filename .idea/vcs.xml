@@ -2,8 +2,5 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/pytesmo" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/pytesmo/tests/test-data" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/../pytesmo" vcs="Git" />
   </component>
 </project>

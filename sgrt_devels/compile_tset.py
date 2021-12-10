@@ -8,6 +8,8 @@ import pickle
 import matplotlib.pyplot as plt
 from sklearn.svm import SVR
 from sklearn.ensemble import GradientBoostingRegressor
+from sklearn.ensemble import AdaBoostRegressor
+from sklearn.ensemble import RandomForestRegressor
 from sklearn.model_selection import GridSearchCV
 from sklearn.model_selection import train_test_split
 from sklearn.model_selection import KFold
@@ -41,7 +43,7 @@ def tree_to_code_GEE(mlmodel, feature_names, step, suffix, outpath):
     outfile = open(outpath + 'w_GLDAS_decisiontree_GEE_' + suffix + '.py', 'w')
     mlmodel = pickle.load(open(mlmodel, 'rb'))
     if step == 1:
-        #mlmodel = mlmodel[0]
+        # mlmodel = mlmodel[0]
         pass
     elif step == 2:
         mlmodel = mlmodel[2]
@@ -175,7 +177,14 @@ class Trainingset(object):
             pickle.dump(self.trainingdb, open(self.outpath + 'trainingdb' + str(self.track) + '.p', 'wb'))
 
         # apply additional asking
-        self.apply_l8ndvi_mask()
+        # self.apply_l8ndvi_mask()
+        # us only
+        not_us_networks = ['RSMN', 'REMEDHUS', 'OZNET', 'TERENO',
+                           'FR-Aqui', 'HOBE', 'SMOSMANIA',
+                           'BIEBRZA-S-1', 'DAHRA']
+        for i in not_us_networks:
+            self.trainingdb.where(self.trainingdb['network'] != i, inplace=True)
+        self.trainingdb = self.trainingdb.dropna()
 
         # compute tempora statistics
         self.compute_temporal_statistics()
@@ -187,136 +196,136 @@ class Trainingset(object):
 
         step1_subs = self.trainingdb.drop_duplicates(['locid'])
         self.sub_loc = step1_subs['locid'].values
-        target1 = np.array(step1_subs['ssm_mean'], dtype=np.float32)
-        features1 = np.vstack((
-            np.array(step1_subs['vv_gamma_v_k1'], dtype=np.float32),  # 0
-            np.array(step1_subs['vh_gamma_v_k1'], dtype=np.float32),  # 1
-            np.array(step1_subs['vv_gamma_v_k2'], dtype=np.float32),  # 2
-            np.array(step1_subs['vh_gamma_v_k2'], dtype=np.float32),  # 3
-            np.array(step1_subs['vv_gamma_v_k3'], dtype=np.float32),  # 4
-            np.array(step1_subs['vh_gamma_v_k3'], dtype=np.float32),  # 5
-            np.array(step1_subs['vv_gamma_v_k4'], dtype=np.float32),  # 6
-            np.array(step1_subs['vh_gamma_v_k4'], dtype=np.float32),  # 7
-            np.array(step1_subs['vv_gamma_v_tmean'], dtype=np.float32),  # 8
-            np.array(step1_subs['vh_gamma_v_tmean'], dtype=np.float32),  # 9
-            np.array(step1_subs['vv_gamma_s_k1'], dtype=np.float32),  # 10
-            np.array(step1_subs['vh_gamma_s_k1'], dtype=np.float32),  # 11
-            np.array(step1_subs['vv_gamma_s_k2'], dtype=np.float32),  # 12
-            np.array(step1_subs['vh_gamma_s_k2'], dtype=np.float32),  # 13
-            np.array(step1_subs['vv_gamma_s_k3'], dtype=np.float32),  # 14
-            np.array(step1_subs['vh_gamma_s_k3'], dtype=np.float32),  # 15
-            np.array(step1_subs['vv_gamma_s_k4'], dtype=np.float32),  # 16
-            np.array(step1_subs['vh_gamma_s_k4'], dtype=np.float32),  # 17
-            np.array(step1_subs['vv_gamma_s_tmean'], dtype=np.float32),  # 18
-            np.array(step1_subs['vh_gamma_s_tmean'], dtype=np.float32),  # 19
-            np.array(step1_subs['lia'], dtype=np.float32),  # 20
-            np.array(step1_subs['lc'], dtype=np.float32),  # 21
-            np.array(step1_subs['bare_perc'], dtype=np.float32),  # 22
-            np.array(step1_subs['crops_perc'], dtype=np.float32),  # 23
-            np.array(step1_subs['trees'], dtype=np.float32),  # 24
-            np.array(step1_subs['forest_type'], dtype=np.float32),  # 25
-            np.array(step1_subs['grass_perc'], dtype=np.float32),  # 26
-            np.array(step1_subs['moss_perc'], dtype=np.float32),  # 27
-            np.array(step1_subs['urban_perc'], dtype=np.float32),  # 28
-            np.array(step1_subs['waterp_perc'], dtype=np.float32),  # 29
-            np.array(step1_subs['waters_perc'], dtype=np.float32),  # 30
-            np.array(step1_subs['L8_b1_median'], dtype=np.float32),  # 31
-            np.array(step1_subs['L8_b2_median'], dtype=np.float32),  # 32
-            np.array(step1_subs['L8_b3_median'], dtype=np.float32),  # 33
-            np.array(step1_subs['L8_b4_median'], dtype=np.float32),  # 34
-            np.array(step1_subs['L8_b5_median'], dtype=np.float32),  # 35
-            np.array(step1_subs['L8_b6_median'], dtype=np.float32),  # 36
-            np.array(step1_subs['L8_b7_median'], dtype=np.float32),  # 37
-            np.array(step1_subs['L8_b10_median'], dtype=np.float32),  # 38
-            np.array(step1_subs['L8_b11_median'], dtype=np.float32),  # 39
-            np.array(step1_subs['ndvi_mean'], dtype=np.float32),  # 40
-            np.array(step1_subs['bulk'], dtype=np.float32),  # 41
-            np.array(step1_subs['clay'], dtype=np.float32),  # 42
-            np.array(step1_subs['sand'], dtype=np.float32),  # 43
-            np.array(step1_subs['texture'], dtype=np.float32),  # 44
-            np.array(step1_subs['lon'], dtype=np.float32),  # 45
-            np.array(step1_subs['lat'], dtype=np.float32),  # 46
-            np.array(step1_subs['gldas_mean'], dtype=np.float32),  # 47
-            np.array(step1_subs['usdasm_mean'], dtype=np.float32))).transpose()  # 48
+        # target1 = np.array(step1_subs['ssm_mean'], dtype=np.float32)
+        # features1 = np.vstack((
+        #     np.array(step1_subs['vv_gamma_v_k1'], dtype=np.float32),  # 0
+        #     np.array(step1_subs['vh_gamma_v_k1'], dtype=np.float32),  # 1
+        #     np.array(step1_subs['vv_gamma_v_k2'], dtype=np.float32),  # 2
+        #     np.array(step1_subs['vh_gamma_v_k2'], dtype=np.float32),  # 3
+        #     # np.array(step1_subs['vv_gamma_v_k3'], dtype=np.float32),  # 4
+        #     # np.array(step1_subs['vh_gamma_v_k3'], dtype=np.float32),  # 5
+        #     # np.array(step1_subs['vv_gamma_v_k4'], dtype=np.float32),  # 6
+        #     # np.array(step1_subs['vh_gamma_v_k4'], dtype=np.float32),  # 7
+        #     np.array(step1_subs['vv_gamma_v_tmean'], dtype=np.float32),  # 8
+        #     np.array(step1_subs['vh_gamma_v_tmean'], dtype=np.float32),  # 9
+        #     np.array(step1_subs['vv_gamma_s_k1'], dtype=np.float32),  # 10
+        #     np.array(step1_subs['vh_gamma_s_k1'], dtype=np.float32),  # 11
+        #     np.array(step1_subs['vv_gamma_s_k2'], dtype=np.float32),  # 12
+        #     np.array(step1_subs['vh_gamma_s_k2'], dtype=np.float32),  # 13
+        #     # np.array(step1_subs['vv_gamma_s_k3'], dtype=np.float32),  # 14
+        #     # np.array(step1_subs['vh_gamma_s_k3'], dtype=np.float32),  # 15
+        #     # np.array(step1_subs['vv_gamma_s_k4'], dtype=np.float32),  # 16
+        #     # np.array(step1_subs['vh_gamma_s_k4'], dtype=np.float32),  # 17
+        #     np.array(step1_subs['vv_gamma_s_tmean'], dtype=np.float32),  # 18
+        #     np.array(step1_subs['vh_gamma_s_tmean'], dtype=np.float32),  # 19
+        #     np.array(step1_subs['lia'], dtype=np.float32),  # 20
+        #     np.array(step1_subs['lc'], dtype=np.float32),  # 21
+        #     np.array(step1_subs['bare_perc'], dtype=np.float32),  # 22
+        #     np.array(step1_subs['crops_perc'], dtype=np.float32),  # 23
+        #     np.array(step1_subs['trees'], dtype=np.float32),  # 24
+        #     np.array(step1_subs['forest_type'], dtype=np.float32),  # 25
+        #     np.array(step1_subs['grass_perc'], dtype=np.float32),  # 26
+        #     np.array(step1_subs['moss_perc'], dtype=np.float32),  # 27
+        #     np.array(step1_subs['urban_perc'], dtype=np.float32),  # 28
+        #     np.array(step1_subs['waterp_perc'], dtype=np.float32),  # 29
+        #     np.array(step1_subs['waters_perc'], dtype=np.float32),  # 30
+        #     np.array(step1_subs['L8_b1_median'], dtype=np.float32),  # 31
+        #     np.array(step1_subs['L8_b2_median'], dtype=np.float32),  # 32
+        #     np.array(step1_subs['L8_b3_median'], dtype=np.float32),  # 33
+        #     np.array(step1_subs['L8_b4_median'], dtype=np.float32),  # 34
+        #     np.array(step1_subs['L8_b5_median'], dtype=np.float32),  # 35
+        #     np.array(step1_subs['L8_b6_median'], dtype=np.float32),  # 36
+        #     np.array(step1_subs['L8_b7_median'], dtype=np.float32),  # 37
+        #     np.array(step1_subs['L8_b10_median'], dtype=np.float32),  # 38
+        #     np.array(step1_subs['L8_b11_median'], dtype=np.float32),  # 39
+        #     np.array(step1_subs['ndvi_median'], dtype=np.float32),  # 40
+        #     np.array(step1_subs['bulk'], dtype=np.float32),  # 41
+        #     np.array(step1_subs['clay'], dtype=np.float32),  # 42
+        #     np.array(step1_subs['sand'], dtype=np.float32),  # 43
+        #     np.array(step1_subs['texture'], dtype=np.float32),  # 44
+        #     np.array(step1_subs['lon'], dtype=np.float32),  # 45
+        #     np.array(step1_subs['lat'], dtype=np.float32))).transpose()  # 46
+            # np.array(step1_subs['gldas_mean'], dtype=np.float32),  # 47
+            # np.array(step1_subs['usdasm_mean'], dtype=np.float32))).transpose()  # 48
 
-        target2 = np.array(self.trainingdb['ssm'], dtype=np.float32) - np.array(self.trainingdb['ssm_mean'],
-                                                                                dtype=np.float32)
+        #target2 = np.array(self.trainingdb['ssm'], dtype=np.float32) - np.array(self.trainingdb['ssm_mean'],
+        #                                                                        dtype=np.float32)
         target2_2 = np.array(self.trainingdb['ssm'], dtype=np.float32)
         features2 = np.vstack((
             np.array(self.trainingdb['gamma0_v_vv'], dtype=np.float32),  # 0
             np.array(self.trainingdb['gamma0_v_vh'], dtype=np.float32),  # 1
             np.array(self.trainingdb['gamma0_v_vv'], dtype=np.float32) -
-            np.array(self.trainingdb['vv_gamma_v_tmean'], dtype=np.float32),  # 2
+            np.array(self.trainingdb['vv_gamma0_v_tmean'], dtype=np.float32),  # 2
             np.array(self.trainingdb['gamma0_v_vh'], dtype=np.float32) -
-            np.array(self.trainingdb['vh_gamma_v_tmean'], dtype=np.float32),  # 3
+            np.array(self.trainingdb['vh_gamma0_v_tmean'], dtype=np.float32),  # 3
             np.array(self.trainingdb['gamma0_s_vv'], dtype=np.float32),  # 4
             np.array(self.trainingdb['gamma0_s_vh'], dtype=np.float32),  # 5
             np.array(self.trainingdb['gamma0_s_vv'], dtype=np.float32) -
-            np.array(self.trainingdb['vv_gamma_s_tmean'], dtype=np.float32),  # 6
+            np.array(self.trainingdb['vv_gamma0_s_tmean'], dtype=np.float32),  # 6
             np.array(self.trainingdb['gamma0_s_vh'], dtype=np.float32) -
-            np.array(self.trainingdb['vh_gamma_s_tmean'], dtype=np.float32),  # 7
+            np.array(self.trainingdb['vh_gamma0_s_tmean'], dtype=np.float32),  # 7
             np.array(self.trainingdb['lia'], dtype=np.float32),  # 8
-            np.array(self.trainingdb['vv_gamma_v_k1'], dtype=np.float32),  # 9
-            np.array(self.trainingdb['vh_gamma_v_k1'], dtype=np.float32),  # 10
-            np.array(self.trainingdb['vv_gamma_v_k2'], dtype=np.float32),  # 11
-            np.array(self.trainingdb['vh_gamma_v_k2'], dtype=np.float32),  # 12
-            np.array(self.trainingdb['vv_gamma_v_k3'], dtype=np.float32),  # 13
-            np.array(self.trainingdb['vh_gamma_v_k3'], dtype=np.float32),  # 14
-            np.array(self.trainingdb['vv_gamma_v_k4'], dtype=np.float32),  # 15
-            np.array(self.trainingdb['vh_gamma_v_k4'], dtype=np.float32),  # 16
-            np.array(self.trainingdb['vv_gamma_s_k1'], dtype=np.float32),  # 17
-            np.array(self.trainingdb['vh_gamma_s_k1'], dtype=np.float32),  # 18
-            np.array(self.trainingdb['vv_gamma_s_k2'], dtype=np.float32),  # 19
-            np.array(self.trainingdb['vh_gamma_s_k2'], dtype=np.float32),  # 20
-            np.array(self.trainingdb['vv_gamma_s_k3'], dtype=np.float32),  # 21
-            np.array(self.trainingdb['vh_gamma_s_k3'], dtype=np.float32),  # 22
-            np.array(self.trainingdb['vv_gamma_s_k4'], dtype=np.float32),  # 23
-            np.array(self.trainingdb['vh_gamma_s_k4'], dtype=np.float32),  # 24
-            np.array(self.trainingdb['lc'], dtype=np.float32),  # 25
-            np.array(self.trainingdb['bare_perc'], dtype=np.float32),  # 26
-            np.array(self.trainingdb['crops_perc'], dtype=np.float32),  # 27
-            np.array(self.trainingdb['trees'], dtype=np.float32),  # 28
-            np.array(self.trainingdb['forest_type'], dtype=np.float32),  # 29
-            np.array(self.trainingdb['grass_perc'], dtype=np.float32),  # 30
-            np.array(self.trainingdb['moss_perc'], dtype=np.float32),  # 31
-            np.array(self.trainingdb['urban_perc'], dtype=np.float32),  # 32
-            np.array(self.trainingdb['waterp_perc'], dtype=np.float32),  # 33
-            np.array(self.trainingdb['waters_perc'], dtype=np.float32),  # 34
-            np.array(self.trainingdb['L8_b1'], dtype=np.float32),  # 35
-            np.array(self.trainingdb['L8_b1_median'], dtype=np.float32),  # 36
-            np.array(self.trainingdb['L8_b2'], dtype=np.float32),  # 37
-            np.array(self.trainingdb['L8_b2_median'], dtype=np.float32),  # 38
-            np.array(self.trainingdb['L8_b3'], dtype=np.float32),  # 39
-            np.array(self.trainingdb['L8_b3_median'], dtype=np.float32),  # 40
-            np.array(self.trainingdb['L8_b4'], dtype=np.float32),  # 41
-            np.array(self.trainingdb['L8_b4_median'], dtype=np.float32),  # 42
-            np.array(self.trainingdb['L8_b5'], dtype=np.float32),  # 43
-            np.array(self.trainingdb['L8_b5_median'], dtype=np.float32),  # 44
-            np.array(self.trainingdb['L8_b6'], dtype=np.float32),  # 45
-            np.array(self.trainingdb['L8_b6_median'], dtype=np.float32),  # 46
-            np.array(self.trainingdb['L8_b7'], dtype=np.float32),  # 47
-            np.array(self.trainingdb['L8_b7_median'], dtype=np.float32),  # 48
-            np.array(self.trainingdb['L8_b10'], dtype=np.float32),  # 49
-            np.array(self.trainingdb['L8_b10_median'], dtype=np.float32),  # 50
-            np.array(self.trainingdb['L8_b11'], dtype=np.float32),  # 51
-            np.array(self.trainingdb['L8_b11_median'], dtype=np.float32),  # 52
-            np.array(self.trainingdb['L8_timediff'], dtype=np.float32),  # 53
-            np.array(self.trainingdb['ndvi'], dtype=np.float32),  # 54
-            np.array(self.trainingdb['ndvi_mean'], dtype=np.float32),  # 55
-            np.array(self.trainingdb['bulk'], dtype=np.float32),  # 56
-            np.array(self.trainingdb['clay'], dtype=np.float32),  # 57
-            np.array(self.trainingdb['sand'], dtype=np.float32),  # 58
-            np.array(self.trainingdb['texture'], dtype=np.float32),  # 59
-            np.array(self.trainingdb['orbit_direction'], dtype=np.float32), # 60
-            np.array(self.trainingdb['gldas'], dtype=np.float32),  # 61
-            np.array(self.trainingdb['gldas_mean'], dtype=np.float32),  # 62
-            np.array(self.trainingdb['usdasm'], dtype=np.float32),  # 63
-            np.array(self.trainingdb['usdasm_mean'], dtype=np.float32),  # 64
+            np.array(self.trainingdb['vv_gamma0_v_k1'], dtype=np.float32),  # 9
+            np.array(self.trainingdb['vh_gamma0_v_k1'], dtype=np.float32),  # 10
+            np.array(self.trainingdb['vv_gamma0_v_k2'], dtype=np.float32),  # 11
+            np.array(self.trainingdb['vh_gamma0_v_k2'], dtype=np.float32),  # 12
+            # np.array(self.trainingdb['vv_gamma_v_k3'], dtype=np.float32),  # 13
+            # np.array(self.trainingdb['vh_gamma_v_k3'], dtype=np.float32),  # 14
+            # np.array(self.trainingdb['vv_gamma_v_k4'], dtype=np.float32),  # 15
+            # np.array(self.trainingdb['vh_gamma_v_k4'], dtype=np.float32),  # 16
+            np.array(self.trainingdb['vv_gamma0_s_k1'], dtype=np.float32),  # 13
+            np.array(self.trainingdb['vh_gamma0_s_k1'], dtype=np.float32),  # 14
+            np.array(self.trainingdb['vv_gamma0_s_k2'], dtype=np.float32),  # 15
+            np.array(self.trainingdb['vh_gamma0_s_k2'], dtype=np.float32),  # 16
+            # np.array(self.trainingdb['vv_gamma_s_k3'], dtype=np.float32),  # 21
+            # np.array(self.trainingdb['vh_gamma_s_k3'], dtype=np.float32),  # 22
+            # np.array(self.trainingdb['vv_gamma_s_k4'], dtype=np.float32),  # 23
+            # np.array(self.trainingdb['vh_gamma_s_k4'], dtype=np.float32),  # 24
+            np.array(self.trainingdb['lc'], dtype=np.float32),  # 17
+            np.array(self.trainingdb['bare_perc'], dtype=np.float32),  # 18
+            np.array(self.trainingdb['crops_perc'], dtype=np.float32),  # 19
+            np.array(self.trainingdb['trees'], dtype=np.float32),  # 20
+            np.array(self.trainingdb['forest_type'], dtype=np.float32),  # 21
+            np.array(self.trainingdb['grass_perc'], dtype=np.float32),  # 22
+            np.array(self.trainingdb['moss_perc'], dtype=np.float32),  # 23
+            np.array(self.trainingdb['urban_perc'], dtype=np.float32),  # 24
+            np.array(self.trainingdb['waterp_perc'], dtype=np.float32),  # 25
+            np.array(self.trainingdb['waters_perc'], dtype=np.float32),  # 26
+            np.array(self.trainingdb['L8_b1'], dtype=np.float32),  # 27
+            np.array(self.trainingdb['L8_b1_median'], dtype=np.float32),  # 28
+            np.array(self.trainingdb['L8_b2'], dtype=np.float32),  # 29
+            np.array(self.trainingdb['L8_b2_median'], dtype=np.float32),  # 30
+            np.array(self.trainingdb['L8_b3'], dtype=np.float32),  # 31
+            np.array(self.trainingdb['L8_b3_median'], dtype=np.float32),  # 32
+            np.array(self.trainingdb['L8_b4'], dtype=np.float32),  # 33
+            np.array(self.trainingdb['L8_b4_median'], dtype=np.float32),  # 34
+            np.array(self.trainingdb['L8_b5'], dtype=np.float32),  # 35
+            np.array(self.trainingdb['L8_b5_median'], dtype=np.float32),  # 36
+            np.array(self.trainingdb['L8_b6'], dtype=np.float32),  # 37
+            np.array(self.trainingdb['L8_b6_median'], dtype=np.float32),  # 38
+            np.array(self.trainingdb['L8_b7'], dtype=np.float32),  # 39
+            np.array(self.trainingdb['L8_b7_median'], dtype=np.float32),  # 40
+            np.array(self.trainingdb['L8_b10'], dtype=np.float32),  # 41
+            np.array(self.trainingdb['L8_b10_median'], dtype=np.float32),  # 42
+            np.array(self.trainingdb['L8_b11'], dtype=np.float32),  # 43
+            np.array(self.trainingdb['L8_b11_median'], dtype=np.float32),  # 44
+            np.array(self.trainingdb['L8_timediff'], dtype=np.float32),  # 45
+            np.array(self.trainingdb['ndvi'], dtype=np.float32),  # 46
+            np.array(self.trainingdb['ndvi_median'], dtype=np.float32),  # 47
+            np.array(self.trainingdb['bulk'], dtype=np.float32),  # 48
+            np.array(self.trainingdb['clay'], dtype=np.float32),  # 49
+            np.array(self.trainingdb['sand'], dtype=np.float32),  # 50
+            np.array(self.trainingdb['texture'], dtype=np.float32),  # 51
+            np.array(self.trainingdb['orbit_direction'], dtype=np.float32),  # 52
+            #np.array(self.trainingdb['gldas'], dtype=np.float32),  # 53
+            #np.array(self.trainingdb['gldas_mean'], dtype=np.float32),  # 54
+            #np.array(self.trainingdb['usdasm'], dtype=np.float32),  # 55
+            #np.array(self.trainingdb['usdasm_mean'], dtype=np.float32),  # 56
         )).transpose()
 
-        self.target1 = target1
-        self.features1 = features1
-        self.target2 = target2
+        #self.target1 = target1
+        #self.features1 = features1
+        #self.target2 = target2
         self.target2_2 = target2_2
         self.features2 = features2
 
@@ -346,174 +355,174 @@ class Trainingset(object):
         self.trainingdb['locid'] = self.loc_id
 
         # recomupte temporal statistics after masking
-        tmp_avg_targets = [
-            'ssm_mean', 'gldas_mean', 'usdasm_mean', 'gldas_et_mean', 'gldas_swe_mean', 'gldas_soilt_mean',
-            'plant_water_mean', 'gldas_precip_mean', 'gldas_snowmelt_mean', 'ndvi_mean', 'L8_b1_median',
-            'L8_b2_median', 'L8_b3_median', 'L8_b4_median', 'L8_b5_median', 'L8_b6_median',
-            'L8_b7_median', 'L8_b10_median', 'L8_b11_median'
-        ]
-        tmp_avg_sources = [
-            'ssm', 'gldas', 'usdasm', 'gldas_et', 'gldas_swe', 'gldas_soilt',
-            'plant_water', 'gldas_precip', 'gldas_snowmelt', 'ndvi', 'L8_b1',
-            'L8_b2', 'L8_b3', 'L8_b4', 'L8_b5', 'L8_b6',
-            'L8_b7', 'L8_b10', 'L8_b11'
-        ]
-        for i_sttn in range(unique_locations.shape[0]):
-            sttn_tracks = self.trainingdb.loc[unique_locations[i_sttn, 0],
-                                              unique_locations[i_sttn, 1]].index.get_level_values(0).unique()
-            for i_sttn_tracks in sttn_tracks:
-                if self.trainingdb.loc[(unique_locations[i_sttn, 0],
-                                        unique_locations[i_sttn, 1],
-                                        i_sttn_tracks)].shape[0] < min_ts_len:
-                    tslong = False
-                else:
-                    tslong = True
-                for var_i in range(len(tmp_avg_targets)):
-                    self.trainingdb.loc[(unique_locations[i_sttn, 0],
-                                         unique_locations[i_sttn, 1],
-                                         i_sttn_tracks), tmp_avg_targets[var_i]] = self.trainingdb.loc[
-                        (unique_locations[i_sttn, 0],
-                         unique_locations[i_sttn, 1],
-                         i_sttn_tracks),
-                        tmp_avg_sources[var_i]].median() if tslong else np.nan
-                # sig0
-                tmp_vv_lin = np.power(10, self.trainingdb.loc[(unique_locations[i_sttn, 0],
-                                                               unique_locations[i_sttn, 1],
-                                                               i_sttn_tracks), 'sig0vv'] / 10)
-                tmp_vh_lin = np.power(10, self.trainingdb.loc[(unique_locations[i_sttn, 0],
-                                                               unique_locations[i_sttn, 1],
-                                                               i_sttn_tracks), 'sig0vv'] / 10)
-                self.trainingdb.loc[(unique_locations[i_sttn, 0],
-                                     unique_locations[i_sttn, 1],
-                                     i_sttn_tracks), 'vv_tmean'] = 10 * np.log10(
-                    tmp_vv_lin.median()) if tslong else np.nan
-                self.trainingdb.loc[(unique_locations[i_sttn, 0],
-                                     unique_locations[i_sttn, 1],
-                                     i_sttn_tracks), 'vh_tmean'] = 10 * np.log10(
-                    tmp_vh_lin.median()) if tslong else np.nan
-                self.trainingdb.loc[(unique_locations[i_sttn, 0],
-                                     unique_locations[i_sttn, 1],
-                                     i_sttn_tracks), 'vv_k1'] = np.mean(np.log(tmp_vv_lin)) if tslong else np.nan
-                self.trainingdb.loc[(unique_locations[i_sttn, 0],
-                                     unique_locations[i_sttn, 1],
-                                     i_sttn_tracks), 'vh_k1'] = np.mean(np.log(tmp_vh_lin)) if tslong else np.nan
-                self.trainingdb.loc[(unique_locations[i_sttn, 0],
-                                     unique_locations[i_sttn, 1],
-                                     i_sttn_tracks), 'vv_k2'] = np.std(np.log(tmp_vv_lin)) if tslong else np.nan
-                self.trainingdb.loc[(unique_locations[i_sttn, 0],
-                                     unique_locations[i_sttn, 1],
-                                     i_sttn_tracks), 'vh_k2'] = np.std(np.log(tmp_vh_lin)) if tslong else np.nan
-                self.trainingdb.loc[(unique_locations[i_sttn, 0],
-                                     unique_locations[i_sttn, 1],
-                                     i_sttn_tracks), 'vv_k3'] = moment(np.log(tmp_vv_lin),
-                                                                       moment=3) if tslong else np.nan
-                self.trainingdb.loc[(unique_locations[i_sttn, 0],
-                                     unique_locations[i_sttn, 1],
-                                     i_sttn_tracks), 'vh_k3'] = moment(np.log(tmp_vh_lin),
-                                                                       moment=3) if tslong else np.nan
-                self.trainingdb.loc[(unique_locations[i_sttn, 0],
-                                     unique_locations[i_sttn, 1],
-                                     i_sttn_tracks), 'vv_k4'] = moment(np.log(tmp_vv_lin),
-                                                                       moment=4) if tslong else np.nan
-                self.trainingdb.loc[(unique_locations[i_sttn, 0],
-                                     unique_locations[i_sttn, 1],
-                                     i_sttn_tracks), 'vh_k4'] = moment(np.log(tmp_vh_lin),
-                                                                       moment=4) if tslong else np.nan
-                # gamma0vol
-                tmp_gammavv_lin = np.power(10, self.trainingdb.loc[(unique_locations[i_sttn, 0],
-                                                                    unique_locations[i_sttn, 1],
-                                                                    i_sttn_tracks), 'gamma0_v_vv'] / 10)
-                tmp_gammavh_lin = np.power(10, self.trainingdb.loc[(unique_locations[i_sttn, 0],
-                                                                    unique_locations[i_sttn, 1],
-                                                                    i_sttn_tracks), 'gamma0_v_vh'] / 10)
-                self.trainingdb.loc[(unique_locations[i_sttn, 0],
-                                     unique_locations[i_sttn, 1],
-                                     i_sttn_tracks), 'vv_gamma_v_tmean'] = 10 * np.log10(
-                    tmp_gammavv_lin.median()) if tslong else np.nan
-                self.trainingdb.loc[(unique_locations[i_sttn, 0],
-                                     unique_locations[i_sttn, 1],
-                                     i_sttn_tracks), 'vh_gamma_v_tmean'] = 10 * np.log10(
-                    tmp_gammavh_lin.median()) if tslong else np.nan
-                self.trainingdb.loc[(unique_locations[i_sttn, 0],
-                                     unique_locations[i_sttn, 1],
-                                     i_sttn_tracks), 'vv_gamma_v_k1'] = np.mean(
-                    np.log(tmp_gammavv_lin)) if tslong else np.nan
-                self.trainingdb.loc[(unique_locations[i_sttn, 0],
-                                     unique_locations[i_sttn, 1],
-                                     i_sttn_tracks), 'vh_gamma_v_k1'] = np.mean(
-                    np.log(tmp_gammavh_lin)) if tslong else np.nan
-                self.trainingdb.loc[(unique_locations[i_sttn, 0],
-                                     unique_locations[i_sttn, 1],
-                                     i_sttn_tracks), 'vv_gamma_v_k2'] = np.std(
-                    np.log(tmp_gammavv_lin)) if tslong else np.nan
-                self.trainingdb.loc[(unique_locations[i_sttn, 0],
-                                     unique_locations[i_sttn, 1],
-                                     i_sttn_tracks), 'vh_gamma_v_k2'] = np.std(
-                    np.log(tmp_gammavh_lin)) if tslong else np.nan
-                self.trainingdb.loc[(unique_locations[i_sttn, 0],
-                                     unique_locations[i_sttn, 1],
-                                     i_sttn_tracks), 'vv_gamma_v_k3'] = moment(np.log(tmp_gammavv_lin),
-                                                                               moment=3) if tslong else np.nan
-                self.trainingdb.loc[(unique_locations[i_sttn, 0],
-                                     unique_locations[i_sttn, 1],
-                                     i_sttn_tracks), 'vh_gamma_v_k3'] = moment(np.log(tmp_gammavh_lin),
-                                                                               moment=3) if tslong else np.nan
-                self.trainingdb.loc[(unique_locations[i_sttn, 0],
-                                     unique_locations[i_sttn, 1],
-                                     i_sttn_tracks), 'vv_gamma_v_k4'] = moment(np.log(tmp_gammavv_lin),
-                                                                               moment=4) if tslong else np.nan
-                self.trainingdb.loc[(unique_locations[i_sttn, 0],
-                                     unique_locations[i_sttn, 1],
-                                     i_sttn_tracks), 'vh_gamma_v_k4'] = moment(np.log(tmp_gammavh_lin),
-                                                                               moment=4) if tslong else np.nan
-
-                # gamma0surf
-                tmp_gammavv_lin = np.power(10, self.trainingdb.loc[(unique_locations[i_sttn, 0],
-                                                                    unique_locations[i_sttn, 1],
-                                                                    i_sttn_tracks), 'gamma0_s_vv'] / 10)
-                tmp_gammavh_lin = np.power(10, self.trainingdb.loc[(unique_locations[i_sttn, 0],
-                                                                    unique_locations[i_sttn, 1],
-                                                                    i_sttn_tracks), 'gamma0_s_vh'] / 10)
-                self.trainingdb.loc[(unique_locations[i_sttn, 0],
-                                     unique_locations[i_sttn, 1],
-                                     i_sttn_tracks), 'vv_gamma_s_tmean'] = 10 * np.log10(
-                    tmp_gammavv_lin.median()) if tslong else np.nan
-                self.trainingdb.loc[(unique_locations[i_sttn, 0],
-                                     unique_locations[i_sttn, 1],
-                                     i_sttn_tracks), 'vh_gamma_s_tmean'] = 10 * np.log10(
-                    tmp_gammavh_lin.median()) if tslong else np.nan
-                self.trainingdb.loc[(unique_locations[i_sttn, 0],
-                                     unique_locations[i_sttn, 1],
-                                     i_sttn_tracks), 'vv_gamma_s_k1'] = np.mean(
-                    np.log(tmp_gammavv_lin)) if tslong else np.nan
-                self.trainingdb.loc[(unique_locations[i_sttn, 0],
-                                     unique_locations[i_sttn, 1],
-                                     i_sttn_tracks), 'vh_gamma_s_k1'] = np.mean(
-                    np.log(tmp_gammavh_lin)) if tslong else np.nan
-                self.trainingdb.loc[(unique_locations[i_sttn, 0],
-                                     unique_locations[i_sttn, 1],
-                                     i_sttn_tracks), 'vv_gamma_s_k2'] = np.std(
-                    np.log(tmp_gammavv_lin)) if tslong else np.nan
-                self.trainingdb.loc[(unique_locations[i_sttn, 0],
-                                     unique_locations[i_sttn, 1],
-                                     i_sttn_tracks), 'vh_gamma_s_k2'] = np.std(
-                    np.log(tmp_gammavh_lin)) if tslong else np.nan
-                self.trainingdb.loc[(unique_locations[i_sttn, 0],
-                                     unique_locations[i_sttn, 1],
-                                     i_sttn_tracks), 'vv_gamma_s_k3'] = moment(np.log(tmp_gammavv_lin),
-                                                                               moment=3) if tslong else np.nan
-                self.trainingdb.loc[(unique_locations[i_sttn, 0],
-                                     unique_locations[i_sttn, 1],
-                                     i_sttn_tracks), 'vh_gamma_s_k3'] = moment(np.log(tmp_gammavh_lin),
-                                                                               moment=3) if tslong else np.nan
-                self.trainingdb.loc[(unique_locations[i_sttn, 0],
-                                     unique_locations[i_sttn, 1],
-                                     i_sttn_tracks), 'vv_gamma_s_k4'] = moment(np.log(tmp_gammavv_lin),
-                                                                               moment=4) if tslong else np.nan
-                self.trainingdb.loc[(unique_locations[i_sttn, 0],
-                                     unique_locations[i_sttn, 1],
-                                     i_sttn_tracks), 'vh_gamma_s_k4'] = moment(np.log(tmp_gammavh_lin),
-                                                                               moment=4) if tslong else np.nan
+        # tmp_avg_targets = [
+        #     'ssm_mean', 'gldas_mean', 'usdasm_mean', 'gldas_et_mean', 'gldas_swe_mean', 'gldas_soilt_mean',
+        #     'plant_water_mean', 'gldas_precip_mean', 'gldas_snowmelt_mean', 'ndvi_mean', 'L8_b1_median',
+        #     'L8_b2_median', 'L8_b3_median', 'L8_b4_median', 'L8_b5_median', 'L8_b6_median',
+        #     'L8_b7_median', 'L8_b10_median', 'L8_b11_median'
+        # ]
+        # tmp_avg_sources = [
+        #     'ssm', 'gldas', 'usdasm', 'gldas_et', 'gldas_swe', 'gldas_soilt',
+        #     'plant_water', 'gldas_precip', 'gldas_snowmelt', 'ndvi', 'L8_b1',
+        #     'L8_b2', 'L8_b3', 'L8_b4', 'L8_b5', 'L8_b6',
+        #     'L8_b7', 'L8_b10', 'L8_b11'
+        # ]
+        # for i_sttn in range(unique_locations.shape[0]):
+        #     sttn_tracks = self.trainingdb.loc[unique_locations[i_sttn, 0],
+        #                                       unique_locations[i_sttn, 1]].index.get_level_values(0).unique()
+        #     for i_sttn_tracks in sttn_tracks:
+        #         if self.trainingdb.loc[(unique_locations[i_sttn, 0],
+        #                                 unique_locations[i_sttn, 1],
+        #                                 i_sttn_tracks)].shape[0] < min_ts_len:
+        #             tslong = False
+        #         else:
+        #             tslong = True
+        #         for var_i in range(len(tmp_avg_targets)):
+        #             self.trainingdb.loc[(unique_locations[i_sttn, 0],
+        #                                  unique_locations[i_sttn, 1],
+        #                                  i_sttn_tracks), tmp_avg_targets[var_i]] = self.trainingdb.loc[
+        #                 (unique_locations[i_sttn, 0],
+        #                  unique_locations[i_sttn, 1],
+        #                  i_sttn_tracks),
+        #                 tmp_avg_sources[var_i]].median() if tslong else np.nan
+        #         # sig0
+        #         tmp_vv_lin = np.power(10, self.trainingdb.loc[(unique_locations[i_sttn, 0],
+        #                                                        unique_locations[i_sttn, 1],
+        #                                                        i_sttn_tracks), 'sig0vv'] / 10)
+        #         tmp_vh_lin = np.power(10, self.trainingdb.loc[(unique_locations[i_sttn, 0],
+        #                                                        unique_locations[i_sttn, 1],
+        #                                                        i_sttn_tracks), 'sig0vv'] / 10)
+        #         self.trainingdb.loc[(unique_locations[i_sttn, 0],
+        #                              unique_locations[i_sttn, 1],
+        #                              i_sttn_tracks), 'vv_tmean'] = 10 * np.log10(
+        #             tmp_vv_lin.median()) if tslong else np.nan
+        #         self.trainingdb.loc[(unique_locations[i_sttn, 0],
+        #                              unique_locations[i_sttn, 1],
+        #                              i_sttn_tracks), 'vh_tmean'] = 10 * np.log10(
+        #             tmp_vh_lin.median()) if tslong else np.nan
+        #         self.trainingdb.loc[(unique_locations[i_sttn, 0],
+        #                              unique_locations[i_sttn, 1],
+        #                              i_sttn_tracks), 'vv_k1'] = np.mean(np.log(tmp_vv_lin)) if tslong else np.nan
+        #         self.trainingdb.loc[(unique_locations[i_sttn, 0],
+        #                              unique_locations[i_sttn, 1],
+        #                              i_sttn_tracks), 'vh_k1'] = np.mean(np.log(tmp_vh_lin)) if tslong else np.nan
+        #         self.trainingdb.loc[(unique_locations[i_sttn, 0],
+        #                              unique_locations[i_sttn, 1],
+        #                              i_sttn_tracks), 'vv_k2'] = np.std(np.log(tmp_vv_lin)) if tslong else np.nan
+        #         self.trainingdb.loc[(unique_locations[i_sttn, 0],
+        #                              unique_locations[i_sttn, 1],
+        #                              i_sttn_tracks), 'vh_k2'] = np.std(np.log(tmp_vh_lin)) if tslong else np.nan
+        #         self.trainingdb.loc[(unique_locations[i_sttn, 0],
+        #                              unique_locations[i_sttn, 1],
+        #                              i_sttn_tracks), 'vv_k3'] = moment(np.log(tmp_vv_lin),
+        #                                                                moment=3) if tslong else np.nan
+        #         self.trainingdb.loc[(unique_locations[i_sttn, 0],
+        #                              unique_locations[i_sttn, 1],
+        #                              i_sttn_tracks), 'vh_k3'] = moment(np.log(tmp_vh_lin),
+        #                                                                moment=3) if tslong else np.nan
+        #         self.trainingdb.loc[(unique_locations[i_sttn, 0],
+        #                              unique_locations[i_sttn, 1],
+        #                              i_sttn_tracks), 'vv_k4'] = moment(np.log(tmp_vv_lin),
+        #                                                                moment=4) if tslong else np.nan
+        #         self.trainingdb.loc[(unique_locations[i_sttn, 0],
+        #                              unique_locations[i_sttn, 1],
+        #                              i_sttn_tracks), 'vh_k4'] = moment(np.log(tmp_vh_lin),
+        #                                                                moment=4) if tslong else np.nan
+        #         # gamma0vol
+        #         tmp_gammavv_lin = np.power(10, self.trainingdb.loc[(unique_locations[i_sttn, 0],
+        #                                                             unique_locations[i_sttn, 1],
+        #                                                             i_sttn_tracks), 'gamma0_v_vv'] / 10)
+        #         tmp_gammavh_lin = np.power(10, self.trainingdb.loc[(unique_locations[i_sttn, 0],
+        #                                                             unique_locations[i_sttn, 1],
+        #                                                             i_sttn_tracks), 'gamma0_v_vh'] / 10)
+        #         self.trainingdb.loc[(unique_locations[i_sttn, 0],
+        #                              unique_locations[i_sttn, 1],
+        #                              i_sttn_tracks), 'vv_gamma_v_tmean'] = 10 * np.log10(
+        #             tmp_gammavv_lin.median()) if tslong else np.nan
+        #         self.trainingdb.loc[(unique_locations[i_sttn, 0],
+        #                              unique_locations[i_sttn, 1],
+        #                              i_sttn_tracks), 'vh_gamma_v_tmean'] = 10 * np.log10(
+        #             tmp_gammavh_lin.median()) if tslong else np.nan
+        #         self.trainingdb.loc[(unique_locations[i_sttn, 0],
+        #                              unique_locations[i_sttn, 1],
+        #                              i_sttn_tracks), 'vv_gamma_v_k1'] = np.mean(
+        #             np.log(tmp_gammavv_lin)) if tslong else np.nan
+        #         self.trainingdb.loc[(unique_locations[i_sttn, 0],
+        #                              unique_locations[i_sttn, 1],
+        #                              i_sttn_tracks), 'vh_gamma_v_k1'] = np.mean(
+        #             np.log(tmp_gammavh_lin)) if tslong else np.nan
+        #         self.trainingdb.loc[(unique_locations[i_sttn, 0],
+        #                              unique_locations[i_sttn, 1],
+        #                              i_sttn_tracks), 'vv_gamma_v_k2'] = np.std(
+        #             np.log(tmp_gammavv_lin)) if tslong else np.nan
+        #         self.trainingdb.loc[(unique_locations[i_sttn, 0],
+        #                              unique_locations[i_sttn, 1],
+        #                              i_sttn_tracks), 'vh_gamma_v_k2'] = np.std(
+        #             np.log(tmp_gammavh_lin)) if tslong else np.nan
+        #         self.trainingdb.loc[(unique_locations[i_sttn, 0],
+        #                              unique_locations[i_sttn, 1],
+        #                              i_sttn_tracks), 'vv_gamma_v_k3'] = moment(np.log(tmp_gammavv_lin),
+        #                                                                        moment=3) if tslong else np.nan
+        #         self.trainingdb.loc[(unique_locations[i_sttn, 0],
+        #                              unique_locations[i_sttn, 1],
+        #                              i_sttn_tracks), 'vh_gamma_v_k3'] = moment(np.log(tmp_gammavh_lin),
+        #                                                                        moment=3) if tslong else np.nan
+        #         self.trainingdb.loc[(unique_locations[i_sttn, 0],
+        #                              unique_locations[i_sttn, 1],
+        #                              i_sttn_tracks), 'vv_gamma_v_k4'] = moment(np.log(tmp_gammavv_lin),
+        #                                                                        moment=4) if tslong else np.nan
+        #         self.trainingdb.loc[(unique_locations[i_sttn, 0],
+        #                              unique_locations[i_sttn, 1],
+        #                              i_sttn_tracks), 'vh_gamma_v_k4'] = moment(np.log(tmp_gammavh_lin),
+        #                                                                        moment=4) if tslong else np.nan
+        #
+        #         # gamma0surf
+        #         tmp_gammavv_lin = np.power(10, self.trainingdb.loc[(unique_locations[i_sttn, 0],
+        #                                                             unique_locations[i_sttn, 1],
+        #                                                             i_sttn_tracks), 'gamma0_s_vv'] / 10)
+        #         tmp_gammavh_lin = np.power(10, self.trainingdb.loc[(unique_locations[i_sttn, 0],
+        #                                                             unique_locations[i_sttn, 1],
+        #                                                             i_sttn_tracks), 'gamma0_s_vh'] / 10)
+        #         self.trainingdb.loc[(unique_locations[i_sttn, 0],
+        #                              unique_locations[i_sttn, 1],
+        #                              i_sttn_tracks), 'vv_gamma_s_tmean'] = 10 * np.log10(
+        #             tmp_gammavv_lin.median()) if tslong else np.nan
+        #         self.trainingdb.loc[(unique_locations[i_sttn, 0],
+        #                              unique_locations[i_sttn, 1],
+        #                              i_sttn_tracks), 'vh_gamma_s_tmean'] = 10 * np.log10(
+        #             tmp_gammavh_lin.median()) if tslong else np.nan
+        #         self.trainingdb.loc[(unique_locations[i_sttn, 0],
+        #                              unique_locations[i_sttn, 1],
+        #                              i_sttn_tracks), 'vv_gamma_s_k1'] = np.mean(
+        #             np.log(tmp_gammavv_lin)) if tslong else np.nan
+        #         self.trainingdb.loc[(unique_locations[i_sttn, 0],
+        #                              unique_locations[i_sttn, 1],
+        #                              i_sttn_tracks), 'vh_gamma_s_k1'] = np.mean(
+        #             np.log(tmp_gammavh_lin)) if tslong else np.nan
+        #         self.trainingdb.loc[(unique_locations[i_sttn, 0],
+        #                              unique_locations[i_sttn, 1],
+        #                              i_sttn_tracks), 'vv_gamma_s_k2'] = np.std(
+        #             np.log(tmp_gammavv_lin)) if tslong else np.nan
+        #         self.trainingdb.loc[(unique_locations[i_sttn, 0],
+        #                              unique_locations[i_sttn, 1],
+        #                              i_sttn_tracks), 'vh_gamma_s_k2'] = np.std(
+        #             np.log(tmp_gammavh_lin)) if tslong else np.nan
+        #         self.trainingdb.loc[(unique_locations[i_sttn, 0],
+        #                              unique_locations[i_sttn, 1],
+        #                              i_sttn_tracks), 'vv_gamma_s_k3'] = moment(np.log(tmp_gammavv_lin),
+        #                                                                        moment=3) if tslong else np.nan
+        #         self.trainingdb.loc[(unique_locations[i_sttn, 0],
+        #                              unique_locations[i_sttn, 1],
+        #                              i_sttn_tracks), 'vh_gamma_s_k3'] = moment(np.log(tmp_gammavh_lin),
+        #                                                                        moment=3) if tslong else np.nan
+        #         self.trainingdb.loc[(unique_locations[i_sttn, 0],
+        #                              unique_locations[i_sttn, 1],
+        #                              i_sttn_tracks), 'vv_gamma_s_k4'] = moment(np.log(tmp_gammavv_lin),
+        #                                                                        moment=4) if tslong else np.nan
+        #         self.trainingdb.loc[(unique_locations[i_sttn, 0],
+        #                              unique_locations[i_sttn, 1],
+        #                              i_sttn_tracks), 'vh_gamma_s_k4'] = moment(np.log(tmp_gammavh_lin),
+        #                                                                        moment=4) if tslong else np.nan
 
     def create_test_set(self, steps=1):
         if steps == 1:
@@ -522,13 +531,13 @@ class Trainingset(object):
             self.target2_2 = self.target2_2[valid]
             self.features2 = self.features2[valid, :]
             self.loc_id = self.loc_id[valid]
-            self.features2, self.testfeatures2,  \
-                self.target2_2, self.testtarget2_2,\
-                self.loc_id, self.testloc_id = train_test_split(self.features2,
-                                                  self.target2_2,
-                                                  self.loc_id,
-                                                  test_size=0.2,
-                                                  random_state=25)
+            self.features2, self.testfeatures2, \
+            self.target2_2, self.testtarget2_2, \
+            self.loc_id, self.testloc_id = train_test_split(self.features2,
+                                                            self.target2_2,
+                                                            self.loc_id,
+                                                            test_size=0.2,
+                                                            random_state=25)
 
     def create_learning_curve(self, modelpath, feature_vect=None):
         from sgrt_devels.utils import plot_learning_curve
@@ -537,12 +546,12 @@ class Trainingset(object):
         # specify training data
         if feature_vect is not None:
             x = self.features2[:, feature_vect].copy()
-            #x_test = self.testfeatures2[:, feature_vect].copy()
+            # x_test = self.testfeatures2[:, feature_vect].copy()
         else:
             x = self.features2.copy()
-            #x_test = self.testfeatures2.copy()
+            # x_test = self.testfeatures2.copy()
         y = self.target2_2.copy()
-        #y_test = self.testtarget2_2.copy()
+        # y_test = self.testtarget2_2.copy()
 
         loc_id = self.loc_id.copy()
 
@@ -562,14 +571,160 @@ class Trainingset(object):
 
         title = 'GBRT learning curve'
         cv = ShuffleSplit(n_splits=10, test_size=0.2, random_state=0)
+        fig, axs = plt.subplots(1, 3, squeeze=True, figsize=(7.13, 2.17), dpi=600)
         plot_learning_curve(mlmodel,
                             title,
                             x,
                             y,
                             cv=cv,
-                            n_jobs=-1)
-        plt.savefig(self.outpath + 'learning_curve.png', dpi=300)
+                            n_jobs=-1,
+                            axes=axs)
+        plt.tight_layout()
+        plt.savefig(self.outpath + 'learning_curve_highes.png', dpi=600)
+        plt.close()
 
+    def create_temp_acc_plot(self, prefix, feature_vect=None):
+        from sklearn.ensemble import GradientBoostingRegressor
+        from sklearn.experimental import enable_hist_gradient_boosting
+        from sklearn.ensemble import HistGradientBoostingRegressor
+        from sklearn.metrics import mean_absolute_error
+        from scipy.stats import spearmanr
+        from scipy.stats import pearsonr
+        import hydroeval as he
+
+        # specify training data
+        if feature_vect is not None:
+            x = self.features2[:, feature_vect].copy()
+            x_test = self.testfeatures2[:, feature_vect].copy()
+        else:
+            x = self.features2.copy()
+            x_test = self.testfeatures2.copy()
+        y = self.target2_2.copy()
+        y_test = self.testtarget2_2.copy()
+
+        loc_id = self.loc_id.copy()
+        testloc_id = self.testloc_id.copy()
+
+        # filter nan
+        valid = ~np.any(np.isnan(x), axis=1)
+        y = y[valid]
+        x = x[valid, :]
+        loc_id = loc_id[valid]
+
+        gcv_gbr = pickle.load(open(self.outpath + prefix + '_GBRmlmodel_1step.p', 'rb'))
+        predictions = gcv_gbr.predict(x_test)
+
+        lclist = list()
+        errorlist = list()
+        r2list = list()
+        rolist = list()
+        rlist = list()
+        maelist = list()
+        kgelist = list()
+        for iloc in np.unique(testloc_id):
+            locids = np.where(testloc_id == iloc)
+            if len(locids[0]) >= 10:
+                if self.testfeatures2[locids, 17][0][0] != 90.0:
+                    r2list.append(r2_score(y_test[locids], predictions[locids]))
+                    maelist.append(mean_absolute_error(y_test[locids], predictions[locids]))
+                    errorlist.append(mean_squared_error(y_test[locids], predictions[locids], squared=False))
+                    rho, p = spearmanr(y_test[locids], predictions[locids])
+                    r, p = pearsonr(y_test[locids], predictions[locids])
+                    rolist.append(rho)
+                    rlist.append(r)
+                    kge, ro2, alpha, beta = he.evaluator(he.kge, predictions[locids], y_test[locids])
+                    kgelist.append(kge)
+                    lclist.append(self.testfeatures2[locids, 17][0][0])
+
+        import seaborn as sns
+        labels = np.append(np.full(len(maelist), 'MAE', dtype=object), np.full(len(errorlist), 'RMSE', dtype=object))
+        labelsr2 = np.full(len(r2list), 'R2', dtype=object)
+        temp_acc = {'Scores': maelist + errorlist, 'Metric': labels, 'Land-Cover': lclist + lclist}
+        temp_acc_r2 = {'Scores': r2list, 'Metric': labelsr2, 'Land-Cover': lclist}
+        fig = plt.figure(figsize=(10, 7), dpi=600)
+        from matplotlib import gridspec
+        gs = gridspec.GridSpec(2, 2, width_ratios=[1, 2])
+        ax0 = plt.subplot(gs[0])
+        ax1 = plt.subplot(gs[1])
+        ax2 = plt.subplot(gs[2])
+        ax3 = plt.subplot(gs[3])
+        sns.boxplot(x='Metric', y='Scores', data=temp_acc_r2, ax=ax0)
+        ax0.set_ylim(-1, 1)
+        ax0.set_title('a)')
+        ax0.set_ylabel('R2')
+        sns.boxplot(x='Metric', y='Scores', hue='Land-Cover', data=temp_acc_r2, ax=ax1)
+        ax1.set_ylim(-1, 1)
+        ax1.set_title('b)')
+        ax1.set_ylabel('R2')
+        sns.boxplot(x='Metric', y='Scores', data=temp_acc, ax=ax2)
+        ax2.set_ylim(0, 0.2)
+        ax2.set_title('c)')
+        ax2.set_ylabel('[m$^3$m$^{-3}$]')
+        sns.boxplot(x='Metric', y='Scores', hue='Land-Cover', data=temp_acc, ax=ax3)
+        ax3.set_ylim(0, 0.2)
+        ax3.set_title('d)')
+        ax3.set_ylabel('[m$^3$m$^{-3}$]')
+        ax1.legend(bbox_to_anchor=(1.01, 1), borderaxespad=0)
+        ax3.legend(bbox_to_anchor=(1.19, 1), borderaxespad=0)
+        plt.tight_layout()
+        plt.savefig(self.outpath + prefix + 'GBR_LOO_1step_temporl_accuracy_w_lc.png', dpi=600)
+        plt.close()
+
+    def create_spatial_acc_plot(self, prefix, feature_vect=None):
+        from sklearn.ensemble import GradientBoostingRegressor
+        from sklearn.experimental import enable_hist_gradient_boosting
+        from sklearn.ensemble import HistGradientBoostingRegressor
+        from sklearn.metrics import mean_absolute_error
+
+        # specify training data
+        if feature_vect is not None:
+            x = self.features2[:, feature_vect].copy()
+            x_test = self.testfeatures2[:, feature_vect].copy()
+        else:
+            x = self.features2.copy()
+            x_test = self.testfeatures2.copy()
+        y = self.target2_2.copy()
+        y_test = self.testtarget2_2.copy()
+
+        loc_id = self.loc_id.copy()
+        testloc_id = self.testloc_id.copy()
+
+        # filter nan
+        valid = ~np.any(np.isnan(x), axis=1)
+        y = y[valid]
+        x = x[valid, :]
+        loc_id = loc_id[valid]
+
+        gcv_gbr = pickle.load(open(self.outpath + prefix + 'GBRmlmodel_1step.p', 'rb'))
+        predictions = gcv_gbr.predict(x_test)
+
+        avg_true = list()
+        avg_predict = list()
+        for iloc in np.unique(testloc_id):
+            locids = np.where(testloc_id == iloc)
+            if len(locids[0]) >= 10:
+                avg_true.append(np.mean(y_test[locids]))
+                avg_predict.append(np.mean(predictions[locids]))
+
+        fig, ax = plt.subplots(1, 1, figsize=(3.5, 3), dpi=600, squeeze=True)
+        ax.scatter(avg_true, avg_predict, c='k', label='True vs Estimated temporal averages', s=1, marker='*')
+        ax.set_xlim(0, 0.6)
+        ax.set_ylim(0, 0.6)
+        ax.set_xlabel("$SMC$ [m$^3$m$^{-3}$]", size=8)
+        ax.set_ylabel("$SMC^*$ [m$^3$m$^{-3}$]", size=8)
+
+        ax.plot([0, 0.6], [0, 0.6], 'k--', linewidth=0.8)
+        r = r2_score(avg_true, avg_predict)
+        error = mean_squared_error(avg_true, avg_predict, squared=False)
+        mae = mean_absolute_error(avg_true, avg_predict)
+        ax.text(0.1, 0.4, 'R2=' + '{:03.2f}'.format(r) +
+                '\nRMSE=' + '{:03.2f}'.format(error) +
+                '\nMAE=' + '{:03.2f}'.format(mae), fontsize=8)
+        ax.set_aspect('equal', 'box')
+        plt.tight_layout()
+
+        plt.savefig(self.outpath + prefix + 'GBR_LOO_1step_spatial_accuracy.png', dpi=600)
+        plt.close()
 
     def train_GBR_LOGO_2step(self,
                              feature_vect1=None,
@@ -745,11 +900,13 @@ class Trainingset(object):
     def train_GBR_LOGO_1step(self,
                              feature_vect=None,
                              prefix='',
-                             export_results=False):
+                             export_results=False,
+                             ml='GBR'):
         from sklearn.ensemble import GradientBoostingRegressor
         from sklearn.experimental import enable_hist_gradient_boosting
         from sklearn.ensemble import HistGradientBoostingRegressor
         from sklearn.metrics import mean_absolute_error
+        from sklearn.ensemble import AdaBoostRegressor
 
         # specify training data
         if feature_vect is not None:
@@ -773,20 +930,37 @@ class Trainingset(object):
         # perform leave-one-group out cross validation to estimate the prediction accuracy
         # in each iteration the left out group corresponds to all measurements of one ismn station
 
-        mlmodel = GradientBoostingRegressor(random_state=12)
-        params_gbr = {'learning_rate': [0.01, 0.1, 0.2], 'n_estimators': [100, 500, 1000], 'subsample': [0.2, 0.5, 1],
-                      'max_depth': [3, 5, 10], 'n_iter_no_change': [10]}
+        if ml == 'GBR':
+            mlmodel = GradientBoostingRegressor(random_state=12)
+            params_gbr = {'learning_rate': [0.01, 0.1, 0.2], 'n_estimators': [100, 500, 1000],
+                          'subsample': [0.2, 0.5, 1],
+                          'max_depth': [3, 5, 10], 'n_iter_no_change': [10]}
+        elif ml == 'ADA':
+            mlmodel = AdaBoostRegressor(random_state=12)
+            params_gbr = {'n_estimators': [100, 500, 1000], 'learning_rate': [0.01, 0.1, 0.2]}
+        elif ml == 'RF':
+            mlmodel = RandomForestRegressor(random_state=12)
+            params_gbr = {'n_estimators': [100, 500, 1000],
+                          'max_depth': [3, 5, None]}
+
         gcv_gbr = GridSearchCV(mlmodel, params_gbr, scoring=['r2', 'neg_root_mean_squared_error'],
                                n_jobs=-1, cv=GroupKFold(), verbose=1, refit='r2')
         gcv_gbr.fit(x, y, groups=loc_id)
         print(gcv_gbr.best_params_)
 
-        print('Average scores: \n')
+        print('Average scores LOGO: \n')
         print('RMSE: ' + str(gcv_gbr.cv_results_['mean_test_neg_root_mean_squared_error'].max() * -1))
         print('R2: ' + str(gcv_gbr.cv_results_['mean_test_r2'].max()))
 
-        pickle.dump(gcv_gbr.best_estimator_,
-                    open(self.outpath + prefix + 'GBRmlmodel_1step.p', 'wb'))
+        if ml == 'GBR':
+            pickle.dump(gcv_gbr.best_estimator_,
+                        open(self.outpath + prefix + 'GBRmlmodel_1step.p', 'wb'))
+        elif ml == 'ADA':
+            pickle.dump(gcv_gbr.best_estimator_,
+                        open(self.outpath + prefix + 'ADAmlmodel_1step.p', 'wb'))
+        elif ml == 'RF':
+            pickle.dump(gcv_gbr.best_estimator_,
+                        open(self.outpath + prefix + 'RFmlmodel_1step.p', 'wb'))
 
         predictions = gcv_gbr.predict(x_test)
 
@@ -800,6 +974,10 @@ class Trainingset(object):
         bias = np.mean(predictions - y_test)
         error = mean_squared_error(y_test, predictions, squared=False)
         mae = mean_absolute_error(y_test, predictions)
+
+        print('Testset scores: \n')
+        print('RMSE: ' + str(error))
+        print('R2: ' + str(r))
 
         pltlims = 0.6
 
@@ -816,7 +994,7 @@ class Trainingset(object):
                 '\nMAE=' + '{:03.2f}'.format(mae), fontsize=8)
         ax.set_aspect('equal', 'box')
         plt.tight_layout()
-        plt.savefig(self.outpath + prefix + 'GBR_LOO_1step.png', dpi=600)
+        plt.savefig(self.outpath + prefix + ml + '_GBR_LOO_1step.png', dpi=600)
         plt.close()
 
     def train_SVR_LOGO_2step(self,
@@ -1012,13 +1190,21 @@ class Trainingset(object):
                              feature_vect=None,
                              prefix='',
                              export_results=False):
+
+        from sklearn.metrics import mean_absolute_error
+
         # specify training data
         if feature_vect is not None:
             x = self.features2[:, feature_vect].copy()
+            x_test = self.testfeatures2[:, feature_vect].copy()
         else:
             x = self.features2.copy()
+            x_test = self.testfeatures2.copy()
         y = self.target2_2.copy()
+        y_test = self.testtarget2_2.copy()
+
         loc_id = self.loc_id.copy()
+        testloc_id = self.testloc_id.copy()
 
         # filter nan
         valid = ~np.any(np.isnan(x), axis=1)
@@ -1042,6 +1228,10 @@ class Trainingset(object):
                       gamma=np.logspace(init_g[0], init_g[1], 3),
                       epsilon=np.logspace(init_e[0], init_e[1], 3),
                       kernel=['rbf'])
+        # dictCV = dict(C=[1.0],
+        #               gamma=[0.31622776601683794],
+        #               epsilon=[0.01],
+        #               kernel=['rbf'])
 
         model = GridSearchCV(estimator=SVR(),
                              param_grid=dictCV,
@@ -1053,59 +1243,46 @@ class Trainingset(object):
 
         model.fit(x, y, groups=loc_id)
 
-        print('Average scores: \n')
-        print('MODEL: ' + str(model.cv_results_))
+        # print('Average scores: \n')
+        # print('MODEL: ' + str(model.cv_results_))
 
-        pickle.dump((model.best_estimator_, scaler),
+        pickle.dump((model, scaler),
                     open(self.outpath + prefix + 'SVRmlmodel_1step.p', 'wb'))
 
-        # Create accuracy estimations
-        loomodel = SVR(C=model.best_params_['C'],
-                       epsilon=model.best_params_['epsilon'],
-                       gamma=model.best_params_['gamma'])
+        print('Average scores LOGO: \n')
+        print('RMSE: ' + str(model.cv_results_['mean_test_neg_root_mean_squared_error'].max() * -1))
+        print('R2: ' + str(model.cv_results_['mean_test_r2'].max()))
 
-        scores = cross_validate(loomodel,
-                                x, y,
-                                groups=loc_id,
-                                cv=LeaveOneGroupOut(),
-                                scoring=['r2', 'neg_root_mean_squared_error'],
-                                n_jobs=-1,
-                                verbose=1)
-
-        predictions = cross_val_predict(loomodel,
-                                        x, y,
-                                        groups=loc_id,
-                                        cv=LeaveOneGroupOut(),
-                                        n_jobs=-1,
-                                        verbose=1)
-
-        print('Average scores: \n')
-        print('RMSE: ' + str(np.nanmedian(scores['test_r2'])))
-        print('R2: ' + str(np.nanmedian(scores['test_neg_root_mean_squared_error']) * -1))
+        predictions = model.predict(scaler.transform(x_test))
 
         if export_results:
-            np.savez(self.outpath + 'loo_tmp.npz', np.array(predictions), y)
-            pickle.dump(scores,
-                        open(self.outpath + 'loo_SVR_2step_scores.npz', 'wb'))
+            np.savez(self.outpath + 'loo_tmp.npz', np.array(predictions), y_test)
+            # pickle.dump(scores,
+            #             open(self.outpath + 'loo_RF_1step_scores.npz', 'wb'))
 
         # Overall scores
-        r = r2_score(y, predictions)
-        bias = np.mean(predictions - y)
-        error = mean_squared_error(y, predictions, squared=False)
+        r = r2_score(y_test, predictions)
+        bias = np.mean(predictions - y_test)
+        error = mean_squared_error(y_test, predictions, squared=False)
+        mae = mean_absolute_error(y_test, predictions)
 
-        pltlims = 1.0
+        print('Testset scores: \n')
+        print('RMSE: ' + str(error))
+        print('R2: ' + str(r))
+
+        pltlims = 0.6
 
         # create plots
         fig, ax = plt.subplots(1, 1, sharex=False, figsize=(3.5, 3), dpi=600, squeeze=True)
-        ax.scatter(y, predictions, c='k', label='True vs Est', s=1, marker='*')
+        ax.scatter(y_test, predictions, c='k', label='True vs Est', s=1, marker='*')
         ax.set_xlim(0, pltlims)
         ax.set_ylim(0, pltlims)
-        ax.set_xlabel("$SMC_{Tot}$ [m$^3$m$^{-3}$]", size=8)
-        ax.set_ylabel("$SMC^*_{Tot}$ [m$^3$m$^{-3}$]", size=8)
+        ax.set_xlabel("$SMC$ [m$^3$m$^{-3}$]", size=8)
+        ax.set_ylabel("$SMC^*$ [m$^3$m$^{-3}$]", size=8)
         ax.plot([0, pltlims], [0, pltlims], 'k--', linewidth=0.8)
-        ax.text(0.1, 0.6, 'R2=' + '{:03.2f}'.format(r) +
+        ax.text(0.1, 0.4, 'R2=' + '{:03.2f}'.format(r) +
                 '\nRMSE=' + '{:03.2f}'.format(error) +
-                '\nBias=' + '{:03.2f}'.format(bias), fontsize=8)
+                '\nMAE=' + '{:03.2f}'.format(mae), fontsize=8)
         ax.set_aspect('equal', 'box')
         plt.tight_layout()
         plt.savefig(self.outpath + prefix + 'SVR_LOO_1step.png', dpi=600)
@@ -1181,6 +1358,13 @@ class Trainingset(object):
                       'max_depth': [3, 5, 10], 'n_iter_no_change': [10]}
         elif ml == 'SVR':
             mlmodel = SVR()
+        elif ml == 'ADA':
+            mlmodel = AdaBoostRegressor(random_state=12)
+            params = {'learning_rate': [0.01, 0.1, 0.2], 'n_estimators': [100, 500, 1000]}
+        elif ml == 'RF':
+            mlmodel = RandomForestRegressor(random_state=12)
+            params = {'n_estimators': [100, 500, 1000],
+                      'max_depth': [3, 5, 10, None]}
 
         best_score = 0
         for i in ParameterGrid(params):
@@ -1209,7 +1393,7 @@ class Trainingset(object):
 
         if self.uselc:
             # COPERNICUS
-            val_lc = [20, 30, 40, 60, 90, 125, 126, 121, 122, 13, 124]
+            val_lc = [20, 30, 40, 60, 125, 126, 121, 122, 123, 124]
         trainingdb_samples = dict()
         used_stations = list()
 
@@ -1269,15 +1453,15 @@ class Trainingset(object):
                     elev, aspe, slop = self.get_topo(px[0], px[1])
 
                     tmp_series, tmp_dirs = exTS.extr_SIG0_LIA_ts_GEE(float(px[0]), float(px[1]),
-                                                           bufferSize=self.footprint,
-                                                           trackflt=self.track,
-                                                           desc=self.desc,
-                                                           tempfilter=False,
-                                                           returnLIA=True,
-                                                           datefilter=[np.min(tmp_ssm.index).strftime('%Y-%m-%d'),
-                                                                       np.max(tmp_ssm.index).strftime('%Y-%m-%d')],
-                                                           S1B=True,
-                                                           radcor=True)
+                                                                     bufferSize=self.footprint,
+                                                                     trackflt=self.track,
+                                                                     desc=self.desc,
+                                                                     tempfilter=False,
+                                                                     returnLIA=True,
+                                                                     datefilter=['2015-01-01',
+                                                                                 '2020-12-31'],
+                                                                     S1B=True,
+                                                                     radcor=True)
                 except:
                     print('Reading from GEE failed - starting retry #' + str(tries))
                     tries = tries + 1
@@ -1333,15 +1517,8 @@ class Trainingset(object):
                 # initialize in-situ series with S1 dates
                 ssm_series = pd.Series(index=tmp_series[track_key].index)
                 # initialize gdal series
-                gldas_series = pd.Series(index=tmp_series[track_key].index)
-                gldas_veg_water = pd.Series(index=tmp_series[track_key].index)
-                gldas_et = pd.Series(index=tmp_series[track_key].index)
                 gldas_swe = pd.Series(index=tmp_series[track_key].index)
                 gldas_soilt = pd.Series(index=tmp_series[track_key].index)
-                gldas_precip = pd.Series(index=tmp_series[track_key].index)
-                gldas_snowmelt = pd.Series(index=tmp_series[track_key].index)
-                # initialize usdasm series
-                usdasm_series = pd.Series(index=tmp_series[track_key].index)
                 # initialize l8 series
                 l8_series_b1 = pd.Series(index=tmp_series[track_key].index)
                 l8_series_b2 = pd.Series(index=tmp_series[track_key].index)
@@ -1364,8 +1541,9 @@ class Trainingset(object):
                     timediff = np.min(np.abs(tmp_ssm.index - current_day))
                     ndvi_timediff = np.min(np.abs(tmpndvi.index - current_day))
                     if timediff > dt.timedelta(days=1):
-                        continue
-                    ssm_series.iloc[i] = tmp_ssm.iloc[np.argmin(np.abs(tmp_ssm.index - current_day))]
+                        ssm_series.iloc[i] = np.nan
+                    else:
+                        ssm_series.iloc[i] = tmp_ssm.iloc[np.argmin(np.abs(tmp_ssm.index - current_day))]
 
                     if ndvi_timediff > dt.timedelta(days=16):
                         ndvi_series.iloc[i] = np.nan
@@ -1387,21 +1565,13 @@ class Trainingset(object):
 
                     tmp_gldas = self.get_gldas(float(px[0]), float(px[1]),
                                                current_day.strftime('%Y-%m-%dT%H:%M:%SZ'),
-                                               varname=['SoilMoi0_10cm_inst', 'CanopInt_inst', 'Evap_tavg',
-                                                        'SWE_inst', 'SoilTMP0_10cm_inst', 'Rainf_f_tavg', 'Qsm_acc'])
-                    gldas_series.iloc[i] = tmp_gldas['SoilMoi0_10cm_inst']
-                    gldas_veg_water.iloc[i] = tmp_gldas['CanopInt_inst']
-                    gldas_et.iloc[i] = tmp_gldas['Evap_tavg']
+                                               varname=['SWE_inst', 'SoilTMP0_10cm_inst'])
                     gldas_swe.iloc[i] = tmp_gldas['SWE_inst']
                     gldas_soilt.iloc[i] = tmp_gldas['SoilTMP0_10cm_inst']
-                    gldas_precip.iloc[i] = tmp_gldas['Rainf_f_tavg']
-                    gldas_snowmelt.iloc[i] = tmp_gldas['Qsm_acc']
-
-                    usdasm_series.iloc[i] = self.get_USDASM(px[0], px[1],
-                                                            current_day.strftime('%Y-%m-%dT%H:%M:%SZ'))
 
                 # check the valid ISMN - S1 overlap
-                vld = np.isfinite(ssm_series) & (gldas_soilt > 275) & (gldas_swe == 0)
+                vld = np.isfinite(ssm_series) & (gldas_soilt > 275) & (gldas_swe == 0) & (ndvi_series <= 5000)
+                vld_avgs = (gldas_soilt > 275) & (gldas_swe == 0) & (ndvi_series <= 5000)
                 overlap = len(np.where(vld)[0])
                 print('Valid S1 - ISMN overlap ' + str(overlap))
                 if overlap < 2:
@@ -1412,22 +1582,45 @@ class Trainingset(object):
                 mindexlist = [(px[0], px[1], int(track_key), ix) for ix in ssm_series.index[vld]]
                 mindex = pd.MultiIndex.from_tuples(mindexlist)
                 ll = len(vld[vld])
+                tmp_vv_lin = np.power(10, vv_series[vld_avgs] / 10)
+                tmp_vh_lin = np.power(10, vh_series[vld_avgs] / 10)
+                tmp_g0_v_vv_lin = np.power(10, vv_gamma_v[vld_avgs] / 10)
+                tmp_g0_v_vh_lin = np.power(10, vh_gamma_v[vld_avgs] / 10)
+                tmp_g0_s_vv_lin = np.power(10, vv_gamma_s[vld_avgs] / 10)
+                tmp_g0_s_vh_lin = np.power(10, vh_gamma_s[vld_avgs] / 10)
                 tmp_dframe = pd.DataFrame({'ssm': list(np.array(ssm_series[vld]).squeeze()),
                                            'sig0vv': list(vv_series[vld]),
                                            'sig0vh': list(vh_series[vld]),
+                                           'vv_tmean': [10 * np.log10(np.nanmedian(tmp_vv_lin))] * ll,
+                                           'vh_tmean': [10 * np.log10(np.nanmedian(tmp_vh_lin))] * ll,
+                                           'vv_k1': [np.nanmean(np.log(tmp_vv_lin))] * ll,
+                                           'vh_k1': [np.nanmean(np.log(tmp_vh_lin))] * ll,
+                                           'vv_k2': [np.nanstd(np.log(tmp_vv_lin))] * ll,
+                                           'vh_k2': [np.nanstd(np.log(tmp_vh_lin))] * ll,
                                            'gamma0_s_vv': list(vv_gamma_s[vld]),
                                            'gamma0_s_vh': list(vh_gamma_s[vld]),
+                                           'vv_gamma0_s_tmean': [10 * np.log10(
+                                               np.nanmedian(tmp_g0_s_vv_lin))] * ll,
+                                           'vh_gamma0_s_tmean': [10 * np.log10(
+                                               np.nanmedian(tmp_g0_s_vh_lin))] * ll,
+                                           'vv_gamma0_s_k1': [np.nanmean(np.log(tmp_g0_s_vv_lin))] * ll,
+                                           'vh_gamma0_s_k1': [np.nanmean(np.log(tmp_g0_s_vh_lin))] * ll,
+                                           'vv_gamma0_s_k2': [np.nanstd(np.log(tmp_g0_s_vv_lin))] * ll,
+                                           'vh_gamma0_s_k2': [np.nanstd(np.log(tmp_g0_s_vh_lin))] * ll,
                                            'gamma0_v_vv': list(vv_gamma_v[vld]),
                                            'gamma0_v_vh': list(vh_gamma_v[vld]),
-                                           'gldas': list(np.array(gldas_series[vld]).squeeze()),
-                                           'usdasm': list(np.array(usdasm_series[vld]).squeeze()),
-                                           'plant_water': list(gldas_veg_water[vld]),
-                                           'gldas_et': list(gldas_et[vld]),
+                                           'vv_gamma0_v_tmean': [10 * np.log10(
+                                               np.nanmedian(tmp_g0_v_vv_lin))] * ll,
+                                           'vh_gamma0_v_tmean': [10 * np.log10(
+                                               np.nanmedian(tmp_g0_v_vh_lin))] * ll,
+                                           'vv_gamma0_v_k1': [np.nanmean(np.log(tmp_g0_v_vv_lin))] * ll,
+                                           'vh_gamma0_v_k1': [np.nanmean(np.log(tmp_g0_v_vh_lin))] * ll,
+                                           'vv_gamma0_v_k2': [np.nanstd(np.log(tmp_g0_v_vv_lin))] * ll,
+                                           'vh_gamma0_v_k2': [np.nanstd(np.log(tmp_g0_v_vh_lin))] * ll,
                                            'gldas_swe': list(gldas_swe[vld]),
                                            'gldas_soilt': list(gldas_soilt[vld]),
-                                           'gldas_precip': list(gldas_precip[vld]),
-                                           'gldas_snowmelt': list(gldas_snowmelt[vld]),
                                            'ndvi': list(ndvi_series[vld]),
+                                           'ndvi_median': [ndvi_series[vld_avgs].median(skipna=True)] * ll,
                                            'lia': list(lia_series[vld]),
                                            'lc': [tmplc_disc] * ll,
                                            'bare_perc': [tmplc_bare] * ll,
@@ -1451,14 +1644,23 @@ class Trainingset(object):
                                            'station': [px[2]] * ll,
                                            'sensor': [px[4]] * ll,
                                            'L8_b1': list(l8_series_b1[vld]),
+                                           'L8_b1_median': [l8_series_b1[vld_avgs].median(skipna=True)] * ll,
                                            'L8_b2': list(l8_series_b2[vld]),
+                                           'L8_b2_median': [l8_series_b2[vld_avgs].median(skipna=True)] * ll,
                                            'L8_b3': list(l8_series_b3[vld]),
+                                           'L8_b3_median': [l8_series_b3[vld_avgs].median(skipna=True)] * ll,
                                            'L8_b4': list(l8_series_b4[vld]),
+                                           'L8_b4_median': [l8_series_b4[vld_avgs].median(skipna=True)] * ll,
                                            'L8_b5': list(l8_series_b5[vld]),
+                                           'L8_b5_median': [l8_series_b5[vld_avgs].median(skipna=True)] * ll,
                                            'L8_b6': list(l8_series_b6[vld]),
+                                           'L8_b6_median': [l8_series_b6[vld_avgs].median(skipna=True)] * ll,
                                            'L8_b7': list(l8_series_b7[vld]),
+                                           'L8_b7_median': [l8_series_b7[vld_avgs].median(skipna=True)] * ll,
                                            'L8_b10': list(l8_series_b10[vld]),
+                                           'L8_b10_median': [l8_series_b10[vld_avgs].median(skipna=True)] * ll,
                                            'L8_b11': list(l8_series_b11[vld]),
+                                           'L8_b11_median': [l8_series_b11[vld_avgs].median(skipna=True)] * ll,
                                            'L8_timediff': list(l8_series_timediff[vld]),
                                            'overlap': [overlap] * ll,
                                            'orbit_direction': tmp_dirs[int(track_key)]}, index=mindex)
@@ -1543,7 +1745,7 @@ class Trainingset(object):
 
     def get_lc(self, x, y):
 
-        #ee.Initialize()
+        # ee.Initialize()
         copernicus_collection = ee.ImageCollection('COPERNICUS/Landcover/100m/Proba-V/Global')
         copernicus_image = ee.Image(copernicus_collection.toList(100).get(0))
         roi = ee.Geometry.Point(x, y).buffer(self.footprint)
@@ -1618,7 +1820,7 @@ class Trainingset(object):
         def get_ts(image):
             return image.reduceRegion(ee.Reducer.median(), roi, 50)
 
-        #ee.Initialize()
+        # ee.Initialize()
         doi = ee.Date(date)
         gldas = ee.ImageCollection("NASA/GLDAS/V021/NOAH/G025/T3H") \
             .select(varname) \
@@ -1632,7 +1834,7 @@ class Trainingset(object):
             return dict([(k, None) for k in varname])
 
     def get_USDASM(self, x, y, date):
-        #ee.Initialize()
+        # ee.Initialize()
         doi = ee.Date(date)
         sm = ee.ImageCollection('NASA_USDA/HSL/soil_moisture') \
             .select('ssm') \
@@ -1646,35 +1848,35 @@ class Trainingset(object):
             return None
 
     def get_soil_texture_class(self, x, y):
-        #ee.Initialize()
+        # ee.Initialize()
         roi = ee.Geometry.Point(x, y).buffer(self.footprint)
         steximg = ee.Image("OpenLandMap/SOL/SOL_TEXTURE-CLASS_USDA-TT_M/v02").select('b0')
         tmp = steximg.reduceRegion(ee.Reducer.mode(), roi, 10).getInfo()
         return tmp['b0']
 
     def get_bulk_density(self, x, y):
-        #ee.Initialize()
+        # ee.Initialize()
         roi = ee.Geometry.Point(x, y).buffer(self.footprint)
         steximg = ee.Image("OpenLandMap/SOL/SOL_BULKDENS-FINEEARTH_USDA-4A1H_M/v02").select('b0')
         tmp = steximg.reduceRegion(ee.Reducer.mode(), roi, 10).getInfo()
         return tmp['b0']
 
     def get_clay_content(self, x, y):
-        #ee.Initialize()
+        # ee.Initialize()
         roi = ee.Geometry.Point(x, y).buffer(self.footprint)
         steximg = ee.Image("OpenLandMap/SOL/SOL_CLAY-WFRACTION_USDA-3A1A1A_M/v02").select('b0')
         tmp = steximg.reduceRegion(ee.Reducer.mode(), roi, 10).getInfo()
         return tmp['b0']
 
     def get_sand_content(self, x, y):
-        #ee.Initialize()
+        # ee.Initialize()
         roi = ee.Geometry.Point(x, y).buffer(self.footprint)
         steximg = ee.Image("OpenLandMap/SOL/SOL_SAND-WFRACTION_USDA-3A1A1A_M/v02").select('b0')
         tmp = steximg.reduceRegion(ee.Reducer.mode(), roi, 10).getInfo()
         return tmp['b0']
 
     def get_topo(self, x, y):
-        #ee.Initialize()
+        # ee.Initialize()
         roi = ee.Geometry.Point(x, y).buffer(self.footprint)
         elev = ee.Image('USGS/SRTMGL1_003').reduceRegion(ee.Reducer.median(), roi).getInfo()
         aspe = ee.Terrain.aspect(ee.Image('USGS/SRTMGL1_003')).reduceRegion(ee.Reducer.median(),

@@ -67,11 +67,11 @@ def plot_learning_curve(estimator, title, X, y, axes=None, ylim=None, cv=None,
     if axes is None:
         _, axes = plt.subplots(1, 3, figsize=(20, 5))
 
-    axes[0].set_title(title)
+    axes[0].set_title(title, fontsize=8)
     if ylim is not None:
         axes[0].set_ylim(*ylim)
-    axes[0].set_xlabel("Training samples")
-    axes[0].set_ylabel("Score")
+    axes[0].set_xlabel("Training samples", fontsize=8)
+    axes[0].set_ylabel("Score", fontsize=8)
 
     train_sizes, train_scores, test_scores, fit_times, _ = \
         learning_curve(estimator, X, y, cv=cv, n_jobs=n_jobs,
@@ -96,24 +96,30 @@ def plot_learning_curve(estimator, title, X, y, axes=None, ylim=None, cv=None,
                  label="Training score")
     axes[0].plot(train_sizes, test_scores_mean, 'o-', color="g",
                  label="Cross-validation score")
-    axes[0].legend(loc="best")
+    axes[0].legend(loc="best", prop={"size":6})
+    for label in (axes[0].get_xticklabels() + axes[0].get_yticklabels()):
+        label.set_fontsize(8)
 
     # Plot n_samples vs fit_times
     axes[1].grid()
     axes[1].plot(train_sizes, fit_times_mean, 'o-')
     axes[1].fill_between(train_sizes, fit_times_mean - fit_times_std,
                          fit_times_mean + fit_times_std, alpha=0.1)
-    axes[1].set_xlabel("Training samples")
-    axes[1].set_ylabel("fit_times")
-    axes[1].set_title("Scalability of the model")
+    axes[1].set_xlabel("Training samples", fontsize=8)
+    axes[1].set_ylabel("fit_times", fontsize=8)
+    axes[1].set_title("Scalability of the model", fontsize=8)
+    for label in (axes[1].get_xticklabels() + axes[1].get_yticklabels()):
+        label.set_fontsize(8)
 
     # Plot fit_time vs score
     axes[2].grid()
     axes[2].plot(fit_times_mean, test_scores_mean, 'o-')
     axes[2].fill_between(fit_times_mean, test_scores_mean - test_scores_std,
                          test_scores_mean + test_scores_std, alpha=0.1)
-    axes[2].set_xlabel("fit_times")
-    axes[2].set_ylabel("Score")
-    axes[2].set_title("Performance of the model")
+    axes[2].set_xlabel("fit_times", fontsize=8)
+    axes[2].set_ylabel("Score", fontsize=8)
+    axes[2].set_title("Performance of the model", fontsize=8)
+    for label in (axes[2].get_xticklabels() + axes[2].get_yticklabels()):
+        label.set_fontsize(8)
 
     return plt
